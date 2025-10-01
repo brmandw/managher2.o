@@ -11,9 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 
 const formSchema = z.object({
-  businessName: z.string().min(2, 'Business name is required.'),
+  businessName: z.string().min(2, 'Jangan lupa isi nama bisnismu..'),
   businessType: z.enum(['F&B', 'Fashion', 'Services', 'Tech', 'Other']),
-  productsSold: z.string().min(10, 'Please describe your products in at least 10 characters.'),
+  productsSold: z.string().min(10, 'Jelaskan deskripsi produkmu minimal 10 karakter huruf ya..'),
   description: z.string().optional(),
 });
 
