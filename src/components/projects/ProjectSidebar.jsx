@@ -33,7 +33,7 @@ export function ProjectSidebar({ className, projectId }) {
   ];
 
   return (
-    <nav className={cn('flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1 mt-16 ml-16', className)}>
+    <nav className={cn('flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1 mt-4 ml-8', className)}>
       {items.map((item) => (
         <Link
           key={item.href}

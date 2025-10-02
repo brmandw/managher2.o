@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 export default function DashboardPage() {
   return (
-    <div className="container py-10 mt-16 mx-16">
+    <div className="container py-10">
       <div className="space-y-4">
         <h1 className="text-3xl font-bold tracking-tight">Welcome back, User!</h1>
         <p className="text-muted-foreground">Ready to shape your next big idea? Let&apos;s get started.</p>

@@ -15,7 +15,7 @@ export default function NewProjectPage() {
   }, []);
 
   return (
-    <div className="container max-w-3xl py-10 mt-16">
+    <div className="container max-w-3xl py-10">
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Create a New Business Project</CardTitle>
@@ -24,7 +24,13 @@ export default function NewProjectPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <NewProjectForm />
+          <NewProjectForm
+            onProjectCreated={(projectId) => {
+              console.log('Project created with ID:', projectId);
+              // Misal: redirect ke halaman berikutnya
+              router.push(`/projects/${projectId}/overview`);
+            }}
+          />
         </CardContent>
       </Card>
     </div>

@@ -1,7 +1,6 @@
 import { AppHeader } from '@/components/common/AppHeader';
-import React from 'react';
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+export default function AppLayout({ children }) {
   return (
     <div className="flex min-h-screen flex-col">
       <AppHeader />

@@ -12,20 +12,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-// import { Logo } from '../icons/Logo';
+import { Logo } from '../icons/Logo';
 import { useRouter } from 'next/navigation';
 
 export function AppHeader() {
   const router = useRouter();
 
   return (
-    <header className="z-40 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 fixed px-16">
+    <header className="sticky top-0 z-40 w-full border-b bg-card">
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
         <div className="flex gap-6 md:gap-10">
-          <div className="font-extrabold text-[22px]">ManagHer</div>
-          {/* <Link href="/dashboard" className="flex items-center space-x-2">
+          <Link href="/dashboard" className="flex items-center space-x-2">
             <Logo />
-          </Link> */}
+          </Link>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">

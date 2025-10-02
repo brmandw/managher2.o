@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { suggestMarketSegments } from '@/ai/flows/suggest-target-segments';
+import { suggestMarketSegments } from '@/ai/flows/suggest-market-segments';
 import { recommendTargetSegments } from '@/ai/flows/recommend-target-segments';
 import { suggestNicheAndPositioning } from '@/ai/flows/suggest-niche-and-positioning';
 import { Button } from '@/components/ui/button';
@@ -11,16 +11,8 @@ import { Loader2, Lightbulb, Target, PenLine, ChevronRight, PartyPopper } from '
 import { useToast } from '@/hooks/use-toast';
 import { Badge } from '../ui/badge';
 import { Textarea } from '../ui/textarea';
-
-type ProjectData = {
-  businessName: string;
-  businessType: string;
-  productsSold: string;
-};
-
-interface MarketabilityWizardProps {
-  projectData: ProjectData;
-}
+import { useRouter } from 'next/navigation';
+import { updateProjectData } from '@/lib/project-storage';
 
 const steps = [
   { id: 1, title: 'Segmentation', icon: Lightbulb },
@@ -28,22 +20,42 @@ const steps = [
   { id: 3, title: 'Positioning', icon: PenLine },
 ];
 
-export function MarketabilityWizard({ projectData }: MarketabilityWizardProps) {
+export function MarketabilityWizard({ projectData }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [marketSegments, setMarketSegments] = useState<string[]>([]);
-  const [recommendedSegments, setRecommendedSegments] = useState<{ segment: string; reason: string }[]>([]);
-  const [nicheAndPositioning, setNicheAndPositioning] = useState<{ nicheSuggestion: string; positioningStatement: string } | null>(null);
+  const [marketSegments, setMarketSegments] = useState(projectData.marketability?.marketSegments || []);
+  const [recommendedSegments, setRecommendedSegments] = useState(projectData.marketability?.recommendedSegments || []);
+  const [nicheAndPositioning, setNicheAndPositioning] = useState(
+    projectData.marketability?.nicheSuggestion ? {
+        nicheSuggestion: projectData.marketability.nicheSuggestion,
+        positioningStatement: projectData.marketability.positioningStatement || '',
+    } : null
+  );
   const { toast } = useToast();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Determine initial step based on loaded project data
+    if (nicheAndPositioning) {
+        setCurrentStep(4);
+    } else if (recommendedSegments.length > 0) {
+        setCurrentStep(3);
+    } else if (marketSegments.length > 0) {
+        setCurrentStep(2);
+    }
+  }, []);
+
 
   const handleSuggestSegments = async () => {
     setLoading(true);
     try {
       const result = await suggestMarketSegments({
-        businessType: projectData.businessType,
-        products: projectData.productsSold,
+        businessType: projectData.business.type,
+        products: projectData.business.products,
       });
       setMarketSegments(result.marketSegments);
+      // MOCK MODE: Save to localStorage
+      updateProjectData(currentData => ({ ...currentData, marketability: { marketSegments: result.marketSegments } }));
       setCurrentStep(2);
     } catch (error) {
       console.error(error);
@@ -57,13 +69,21 @@ export function MarketabilityWizard({ projectData }: MarketabilityWizardProps) {
     setLoading(true);
     try {
       const result = await recommendTargetSegments({
-        businessType: projectData.businessType,
-        productsSold: projectData.productsSold,
+        businessType: projectData.business.type,
+        productsSold: projectData.business.products,
         marketSegments,
       });
       setRecommendedSegments(result.recommendedSegments);
+      // MOCK MODE: Save to localStorage
+      updateProjectData(currentData => ({
+        ...currentData,
+        marketability: {
+            ...currentData.marketability,
+            recommendedSegments: result.recommendedSegments,
+        }
+      }));
       setCurrentStep(3);
-    } catch (error) {
+    } catch (error)     { 
       console.error(error);
       toast({ variant: 'destructive', title: 'Error', description: 'Failed to recommend target segments.' });
     } finally {
@@ -75,12 +95,21 @@ export function MarketabilityWizard({ projectData }: MarketabilityWizardProps) {
     setLoading(true);
     try {
       const result = await suggestNicheAndPositioning({
-        businessName: projectData.businessName,
-        businessType: projectData.businessType,
-        productsSold: projectData.productsSold,
+        businessName: projectData.business.name,
+        businessType: projectData.business.type,
+        productsSold: projectData.business.products,
         selectedMarketSegments: recommendedSegments.map(s => s.segment),
       });
       setNicheAndPositioning(result);
+      // MOCK MODE: Save to localStorage
+      updateProjectData(currentData => ({
+        ...currentData,
+        marketability: {
+            ...currentData.marketability,
+            nicheSuggestion: result.nicheSuggestion,
+            positioningStatement: result.positioningStatement,
+        }
+      }));
       setCurrentStep(4);
     } catch (error) {
       console.error(error);
@@ -91,11 +120,25 @@ export function MarketabilityWizard({ projectData }: MarketabilityWizardProps) {
   };
   
   const handleSaveStrategy = () => {
+    // MOCK MODE: Data is already saved on each step, just need to update textareas if changed
+    const nicheTextarea = document.getElementById('niche-suggestion');
+    const positioningTextarea = document.getElementById('positioning-statement');
+    
+    updateProjectData(currentData => ({
+      ...currentData,
+        marketability: {
+            ...currentData.marketability,
+            nicheSuggestion: nicheTextarea.value,
+            positioningStatement: positioningTextarea.value,
+        }
+    }));
+
     toast({
         title: 'Strategy Saved!',
         description: 'Your marketability strategy has been successfully saved.',
         className: 'bg-primary text-primary-foreground',
     });
+    router.push(`/projects/${projectData.id}/innovation`);
   }
 
   const renderStepContent = () => {
@@ -110,10 +153,10 @@ export function MarketabilityWizard({ projectData }: MarketabilityWizardProps) {
             <CardContent>
               <div className="space-y-4">
                 <p>Based on your business details, our AI will suggest relevant market segments.</p>
-                <div className="p-4 border rounded-lg bg-muted/50">
-                    <h4 className="font-semibold">{projectData.businessName}</h4>
-                    <h5 className="text-sm"><Badge variant="secondary">{projectData.businessType}</Badge></h5>
-                    <p className="text-sm text-muted-foreground mt-2">{projectData.productsSold}</p>
+                <div className="p-4 border rounded-lg bg-background/50">
+                    <h4 className="font-semibold">{projectData.business.name}</h4>
+                    <h5 className="text-sm"><Badge variant="secondary">{projectData.business.type}</Badge></h5>
+                    <p className="text-sm text-muted-foreground mt-2">{projectData.business.products}</p>
                 </div>
               </div>
             </CardContent>
@@ -163,7 +206,7 @@ export function MarketabilityWizard({ projectData }: MarketabilityWizardProps) {
                         <h3 className="font-semibold mb-2">Recommended Target Segments:</h3>
                         <div className="grid md:grid-cols-2 gap-4">
                             {recommendedSegments.map((rec, index) => (
-                                <Card key={index} className="bg-muted/50">
+                                <Card key={index} className="bg-background/50">
                                     <CardHeader>
                                         <CardTitle className="flex items-center gap-2"><Target size={20}/> {rec.segment}</CardTitle>
                                     </CardHeader>
@@ -179,7 +222,7 @@ export function MarketabilityWizard({ projectData }: MarketabilityWizardProps) {
                 <CardFooter>
                     <Button onClick={handleSuggestPositioning} disabled={loading} className="ml-auto bg-accent text-accent-foreground hover:bg-accent/80">
                         {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <PenLine className="mr-2 h-4 w-4" />}
-                        Suggest Niche & Positioning
+                        Suggest Niche &amp; Positioning
                     </Button>
                 </CardFooter>
             </Card>
@@ -194,16 +237,16 @@ export function MarketabilityWizard({ projectData }: MarketabilityWizardProps) {
                 <CardContent className="space-y-6">
                     <div>
                         <h3 className="font-semibold mb-2">Niche Suggestion</h3>
-                        <Textarea defaultValue={nicheAndPositioning?.nicheSuggestion} rows={3} className="text-base" />
+                        <Textarea id="niche-suggestion" defaultValue={nicheAndPositioning?.nicheSuggestion} rows={3} className="text-base" />
                     </div>
                     <div>
                         <h3 className="font-semibold mb-2">Positioning Statement</h3>
-                        <Textarea defaultValue={nicheAndPositioning?.positioningStatement} rows={5} className="text-base" />
+                        <Textarea id="positioning-statement" defaultValue={nicheAndPositioning?.positioningStatement} rows={5} className="text-base" />
                     </div>
                 </CardContent>
                 <CardFooter>
                     <Button onClick={handleSaveStrategy} size="lg" className="ml-auto bg-primary text-primary-foreground hover:bg-primary/90">
-                        Save Strategy
+                        Save and Continue to Innovation
                     </Button>
                 </CardFooter>
             </Card>
