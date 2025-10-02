@@ -18,11 +18,11 @@ export function Logo(props) {
         x="48"
         y="32"
         fontFamily="Inter, sans-serif"
-        fontSize="24"
+        fontSize="30"
         fontWeight="bold"
         fill="hsl(var(--foreground))"
       >
-        BizPlan Navigator
+        ManagHer
       </text>
     </svg>
   );
