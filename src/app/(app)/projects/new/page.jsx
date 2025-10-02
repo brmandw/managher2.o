@@ -15,7 +15,7 @@ export default function NewProjectPage() {
   }, []);
 
   return (
-    <div className="container max-w-3xl py-10">
+    <div className="container max-w-3xl py-10 mt-16">
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Create a New Business Project</CardTitle>
