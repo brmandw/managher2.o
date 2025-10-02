@@ -18,37 +18,62 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { updateProjectData } from '@/lib/project-storage';
+import { useToast } from '@/hooks/use-toast';
 
-type Variant = {
-  id: string;
-  name: string;
-  type: 'flavor' | 'size' | 'personalization';
-  isActive: boolean;
-};
 
-interface VariantManagerProps {
-    selectedSegments: string[];
-}
 
-export function VariantManager({ selectedSegments }: VariantManagerProps) {
-  const [variants, setVariants] = useState<Variant[]>([
-    { id: '1', name: 'Matcha Latte', type: 'flavor', isActive: true },
-    { id: '2', name: 'Travel Size', type: 'size', isActive: false },
-  ]);
-  const [editingVariant, setEditingVariant] = useState<Variant | null>(null);
 
-  const handleSaveVariant = (variantData: Omit<Variant, 'id'>) => {
+
+export function VariantManager({ selectedSegments, initialVariants }) {
+  const [variants, setVariants] = useState(initialVariants);
+  const [editingVariant, setEditingVariant] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { toast } = useToast();
+
+  const saveVariantsToStorage = (updatedVariants) => {
+    // MOCK MODE: Save to localStorage
+    updateProjectData(currentData => ({ 
+        ...currentData,
+        innovation: { 
+            ...currentData.innovation,
+            variants: updatedVariants 
+        }
+    }));
+    toast({
+      title: 'Variants Updated',
+      description: 'Your product variants have been saved.',
+    });
+  }
+
+  const handleSaveVariant = (variantData) => {
+    let updatedVariants;
     if (editingVariant) {
-      setVariants(variants.map((v) => (v.id === editingVariant.id ? { ...editingVariant, ...variantData } : v)));
+      updatedVariants = variants.map((v) => (v.id === editingVariant.id ? { ...v, ...variantData } : v));
     } else {
-      setVariants([...variants, { id: Date.now().toString(), ...variantData }]);
+      updatedVariants = [...variants, { id: `var_${Date.now()}`, ...variantData }];
     }
+    setVariants(updatedVariants);
+    saveVariantsToStorage(updatedVariants);
     setEditingVariant(null);
+    setIsModalOpen(false);
   };
 
-  const handleDeleteVariant = (id: string) => {
-    setVariants(variants.filter((v) => v.id !== id));
+  const handleDeleteVariant = (id) => {
+    const updatedVariants = variants.filter((v) => v.id !== id);
+    setVariants(updatedVariants);
+    saveVariantsToStorage(updatedVariants);
   };
+
+  const openNewVariantModal = () => {
+    setEditingVariant(null);
+    setIsModalOpen(true);
+  }
+
+  const openEditVariantModal = (variant) => {
+    setEditingVariant(variant);
+    setIsModalOpen(true);
+  }
   
   const personalizationRecommended = selectedSegments.some(s => ['remaja', 'keluarga', 'pasangan'].includes(s.toLowerCase()));
 
@@ -59,15 +84,10 @@ export function VariantManager({ selectedSegments }: VariantManagerProps) {
             <CardTitle>Product/Feature Variations</CardTitle>
             <CardDescription>Manage different versions of your products or services.</CardDescription>
         </div>
-        <Dialog onOpenChange={(open) => !open && setEditingVariant(null)}>
-          <DialogTrigger asChild>
-            <Button>
-              <PlusCircle className="mr-2 h-4 w-4" />
-              Add New Variant
-            </Button>
-          </DialogTrigger>
-          <VariantModalDialog title="Add New Variant" onSave={handleSaveVariant} />
-        </Dialog>
+        <Button onClick={openNewVariantModal}>
+            <PlusCircle className="mr-2 h-4 w-4" />
+            Add New Variant
+        </Button>
       </CardHeader>
       <CardContent>
         {variants.length > 0 ? (
@@ -81,20 +101,9 @@ export function VariantManager({ selectedSegments }: VariantManagerProps) {
                   </p>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Dialog onOpenChange={(open) => !open && setEditingVariant(null)}>
-                    <DialogTrigger asChild>
-                      <Button variant="ghost" size="icon" onClick={() => setEditingVariant(variant)}>
+                    <Button variant="ghost" size="icon" onClick={() => openEditVariantModal(variant)}>
                         <Edit className="h-4 w-4" />
-                      </Button>
-                    </DialogTrigger>
-                     {editingVariant && editingVariant.id === variant.id && (
-                        <VariantModalDialog 
-                            title="Edit Variant" 
-                            variant={editingVariant}
-                            onSave={handleSaveVariant} 
-                        />
-                     )}
-                  </Dialog>
+                    </Button>
                   <Button variant="ghost" size="icon" onClick={() => handleDeleteVariant(variant.id)}>
                     <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>
@@ -112,7 +121,7 @@ export function VariantManager({ selectedSegments }: VariantManagerProps) {
               <TooltipProvider>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <div className="mt-4 text-sm text-muted-foreground text-center p-2 bg-muted rounded-lg">
+                        <div className="mt-4 text-sm text-muted-foreground text-center p-2 bg-yellow-100/50 dark:bg-yellow-900/20 border border-yellow-200/50 dark:border-yellow-800/30 rounded-lg">
                             💡 Tip: Based on your selected segments, consider adding a personalization variant (e.g., custom names on packaging)!
                         </div>
                     </TooltipTrigger>
@@ -123,14 +132,24 @@ export function VariantManager({ selectedSegments }: VariantManagerProps) {
              </TooltipProvider>
         )}
       </CardContent>
+
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <VariantModalDialog 
+            key={editingVariant?.id || 'new'}
+            title={editingVariant ? "Edit Variant" : "Add New Variant"}
+            variant={editingVariant}
+            onSave={handleSaveVariant}
+            onClose={() => setIsModalOpen(false)}
+        />
+      </Dialog>
     </Card>
   );
 }
 
-function VariantModalDialog({ title, variant, onSave }: { title: string, variant?: Variant, onSave: (data: Omit<Variant, 'id'>) => void }) {
+function VariantModalDialog({ title, variant, onSave, onClose }) {
   const [name, setName] = useState(variant?.name || '');
-  const [type, setType] = useState<Variant['type'] | ''>(variant?.type || '');
-  const [isActive, setIsActive] = useState(variant?.isActive || true);
+  const [type, setType] = useState(variant?.type || '');
+  const [isActive, setIsActive] = useState(variant?.isActive !== undefined ? variant.isActive : true);
 
   const handleInternalSave = () => {
     if (name && type) {
@@ -150,7 +169,7 @@ function VariantModalDialog({ title, variant, onSave }: { title: string, variant
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="variant-type" className="text-right">Type</Label>
-            <Select onValueChange={(value: Variant['type']) => setType(value)} value={type}>
+            <Select onValueChange={(value) => setType(value)} value={type}>
               <SelectTrigger className="col-span-3">
                 <SelectValue placeholder="Select a variant type" />
               </SelectTrigger>
@@ -164,17 +183,13 @@ function VariantModalDialog({ title, variant, onSave }: { title: string, variant
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="variant-active" className="text-right">Activate</Label>
              <div className="col-span-3">
-                 <Switch id="variant-active" checked={isActive} onCheckedChange={(checked: boolean) => setIsActive(checked)} />
+                 <Switch id="variant-active" checked={isActive} onCheckedChange={setIsActive} />
             </div>
           </div>
         </div>
         <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DialogClose>
-          <DialogClose asChild>
-            <Button onClick={handleInternalSave}>Save</Button>
-          </DialogClose>
+          <Button variant="outline" onClick={onClose}>Cancel</Button>
+          <Button onClick={handleInternalSave}>Save</Button>
         </DialogFooter>
       </DialogContent>
   )

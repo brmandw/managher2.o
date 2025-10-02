@@ -1,62 +1,82 @@
 'use client';
 import { useState } from 'react';
 import { addDays, format } from 'date-fns';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Star, ChevronDown } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { updateProjectData } from '@/lib/project-storage';
+import { useToast } from '@/hooks/use-toast';
 
-type Feedback = {
-  id: string;
-  source: 'Marketplace' | 'Social Media' | 'Internal Form';
-  comment: string;
-  rating: number;
-  date: Date;
-};
 
-type Iteration = {
-  id: string;
-  date: Date;
-  feedbacks: Feedback[];
-};
 
-export function FeedbackLoop() {
-  const [feedbacks, setFeedbacks] = useState<Feedback[]>([
-      { id: '1', source: 'Marketplace', comment: 'The packaging was great!', rating: 5, date: new Date() }
-  ]);
-  const [lastIterationDate, setLastIterationDate] = useState(new Date());
-  const [iterationHistory, setIterationHistory] = useState<Iteration[]>([]);
+export function FeedbackLoop({ initialData }) {
+  const [feedbacks, setFeedbacks] = useState(initialData?.currentFeedbacks || []);
+  const [iterationHistory, setIterationHistory] = useState(initialData?.iterations || []);
+  const [lastIterationDate, setLastIterationDate] = useState(() => {
+      if (initialData?.iterations && initialData.iterations.length > 0) {
+        // Dates from JSON are strings, need to convert back to Date objects
+        const sortedIterations = [...initialData.iterations].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        return new Date(sortedIterations[0].date);
+      }
+      return new Date();
+  });
+  const { toast } = useToast();
 
   const recommendedNextIteration = addDays(lastIterationDate, 60);
 
-  const handleAddFeedback = (e: React.FormEvent) => {
+  const saveFeedbackToStorage = (dataToSave) => {
+    // MOCK MODE: Save to localStorage
+    updateProjectData(currentData => ({
+        ...currentData,
+        innovation: {
+            ...currentData.innovation,
+            feedback: {
+                ...currentData.innovation?.feedback,
+                ...dataToSave,
+            }
+        }
+    }));
+    toast({
+      title: 'Feedback Updated',
+      description: 'Your feedback data has been saved to localStorage.',
+    });
+  }
+
+  const handleAddFeedback = (e) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
+    const form = e.target;
     const formData = new FormData(form);
-    const newFeedback: Feedback = {
-        id: Date.now().toString(),
-        source: formData.get('source') as Feedback['source'],
-        comment: formData.get('comment') as string,
+    const newFeedback = {
+        id: `fb_${Date.now()}`,
+        source: formData.get('source'),
+        comment: formData.get('comment'),
         rating: Number(formData.get('rating')),
-        date: new Date(),
+        date: new Date().toISOString(),
     };
-    setFeedbacks([newFeedback, ...feedbacks]);
+    const updatedFeedbacks = [newFeedback, ...feedbacks];
+    setFeedbacks(updatedFeedbacks);
+    saveFeedbackToStorage({ currentFeedbacks: updatedFeedbacks });
     form.reset();
   };
 
   const startNewIteration = () => {
-    const newIteration: Iteration = {
+    const newIteration = {
         id: `iter-${Date.now()}`,
-        date: lastIterationDate,
+        date: new Date().toISOString(),
         feedbacks: feedbacks,
     };
-    setIterationHistory([newIteration, ...iterationHistory]);
+    const updatedHistory = [newIteration, ...iterationHistory];
+    setIterationHistory(updatedHistory);
     setFeedbacks([]); // Reset current feedback for the new cycle
-    setLastIterationDate(new Date());
+    setLastIterationDate(new Date(newIteration.date)); // Set the date of the new iteration
+    
+    // MOCK MODE: Save to localStorage
+    saveFeedbackToStorage({ iterations: updatedHistory, currentFeedbacks: [] });
   }
 
   return (
@@ -131,7 +151,7 @@ export function FeedbackLoop() {
                       ))}
                     </div>
                   </div>
-                   <p className="text-xs text-muted-foreground mt-2">{format(fb.date, 'PPP')}</p>
+                   <p className="text-xs text-muted-foreground mt-2">{format(new Date(fb.date), 'PPP')}</p>
                 </div>
               ))
             ) : (
@@ -151,7 +171,7 @@ export function FeedbackLoop() {
                 {iterationHistory.map((iteration) => (
                   <AccordionItem value={iteration.id} key={iteration.id}>
                     <AccordionTrigger>
-                        Iteration of {format(iteration.date, 'PPP')} ({iteration.feedbacks.length} feedback items)
+                        Iteration of {format(new Date(iteration.date), 'PPP')} ({iteration.feedbacks.length} feedback items)
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
                       {iteration.feedbacks.map((fb) => (
@@ -167,7 +187,7 @@ export function FeedbackLoop() {
                               ))}
                             </div>
                           </div>
-                          <p className="text-xs text-muted-foreground mt-2">{format(fb.date, 'PPP')}</p>
+                          <p className="text-xs text-muted-foreground mt-2">{format(new Date(fb.date), 'PPP')}</p>
                         </div>
                       ))}
                     </AccordionContent>

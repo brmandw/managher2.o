@@ -1,21 +1,47 @@
+'use client';
+import { useEffect, useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Package, ShoppingBag, MessageSquare } from 'lucide-react';
 import { PackagingForm } from '@/components/innovation/PackagingForm';
 import { VariantManager } from '@/components/innovation/VariantManager';
 import { FeedbackLoop } from '@/components/innovation/FeedbackLoop';
+import { loadProjectData } from '@/lib/project-storage';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useParams } from 'next/navigation';
 
-export default function InnovationPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
-    const projectData = {
-    businessName: searchParams?.name as string || "My Business",
-    businessType: searchParams?.type as string || "Other",
-    productsSold: searchParams?.products as string || "Various products",
-  };
-  const selectedSegments = searchParams?.segments ? (searchParams.segments as string).split(',') : [];
+export default function InnovationPage() {
+  const [projectData, setProjectData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const params = useParams()
 
+  useEffect(() => {
+    // MOCK MODE: Load data from localStorage
+    const data = loadProjectData();
+    if (data && data.id === params.id) {
+        setProjectData(data);
+    }
+    setLoading(false);
+  }, [params.id]);
+
+  if (loading) {
+    return <Skeleton className="h-[500px] w-full" />;
+  }
+
+  if (!projectData) {
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle>Project Not Found</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p>Could not find project data. Please start a new project.</p>
+            </CardContent>
+        </Card>
+    )
+  }
+
+  const selectedSegments = projectData.marketability?.recommendedSegments?.map(s => s.segment) || [];
 
   return (
     <div className="space-y-6">
@@ -42,13 +68,13 @@ export default function InnovationPage({
           </TabsTrigger>
         </TabsList>
         <TabsContent value="packaging" className="mt-6">
-          <PackagingForm />
+          <PackagingForm initialData={projectData.innovation?.packaging} />
         </TabsContent>
         <TabsContent value="variants" className="mt-6">
-          <VariantManager selectedSegments={selectedSegments}/>
+          <VariantManager selectedSegments={selectedSegments} initialVariants={projectData.innovation?.variants || []} />
         </TabsContent>
         <TabsContent value="feedback" className="mt-6">
-          <FeedbackLoop />
+          <FeedbackLoop initialData={projectData.innovation?.feedback} />
         </TabsContent>
       </Tabs>
     </div>

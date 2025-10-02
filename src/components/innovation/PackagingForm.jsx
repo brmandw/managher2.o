@@ -7,12 +7,34 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { updateProjectData } from '@/lib/project-storage';
+import { useToast } from '@/hooks/use-toast';
 
-export function PackagingForm() {
-  const [isAdaptive, setIsAdaptive] = useState(false);
-  const [isTested, setIsTested] = useState(false);
+
+
+export function PackagingForm({ initialData }) {
+  const [notes, setNotes] = useState(initialData?.notes || '');
+  const [isAdaptive, setIsAdaptive] = useState(initialData?.isAdaptive || false);
+  const [isTested, setIsTested] = useState(initialData?.isTested || false);
+  const { toast } = useToast();
 
   const isLogisticsReady = isAdaptive && isTested;
+  
+  const handleSave = () => {
+    // MOCK MODE: Save to localStorage
+    const packagingData = { notes, isAdaptive, isTested, isLogisticsReady };
+    updateProjectData(currentData => ({
+        ...currentData,
+        innovation: { 
+            ...currentData.innovation,
+            packaging: packagingData 
+        }
+    }));
+    toast({
+        title: 'Packaging Saved',
+        description: 'Your packaging details have been saved.',
+    });
+  }
 
   return (
     <Card>
@@ -27,6 +49,8 @@ export function PackagingForm() {
             id="packaging-notes"
             placeholder="e.g., impact-resistant, suitable for express delivery, vacuum sealed + bubble wrap for dry cakes"
             rows={4}
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
           />
         </div>
         <div className="flex items-center space-x-2">
@@ -44,7 +68,7 @@ export function PackagingForm() {
             Logistics-Ready Packaging
           </Badge>
         )}
-        <Button className="ml-auto">Save Packaging Details</Button>
+        <Button onClick={handleSave} className="ml-auto">Save Packaging Details</Button>
       </CardFooter>
     </Card>
   );
