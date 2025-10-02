@@ -41,6 +41,7 @@ export const useProjectStore = create((set, get) => {
     projects: [],
     loading: false,
     error: null,
+    marketabilityData: {},
 
     fetchProjects: async () => {
       await fetchProjectsInternal();
@@ -100,7 +101,11 @@ export const useProjectStore = create((set, get) => {
       try {
         const ok = await apiDeleteProject(id);
         if (ok) {
-          set((s) => ({ projects: (s.projects || []).filter((p) => p.id !== id), loading: false }));
+          set((s) => ({ 
+            projects: (s.projects || []).filter((p) => p.id !== id),
+            marketabilityData: { ...s.marketabilityData, [id]: undefined },
+            loading: false 
+          }));
         } else {
           set({ loading: false });
         }
@@ -110,5 +115,71 @@ export const useProjectStore = create((set, get) => {
         throw err;
       }
     },
+
+    // Marketability Actions
+    updateMarketability: async (projectId, marketabilityData) => {
+      if (!projectId) {
+        throw new Error("Project ID is required");
+      }
+      
+      const project = await get().getProject(projectId);
+      if (!project) {
+        throw new Error("Project not found");
+      }
+
+      const updatedProject = {
+        ...project,
+        marketability: {
+          ...project.marketability,
+          ...marketabilityData
+        }
+      };
+
+      return await get().updateProject(updatedProject);
+    },
+
+    // Market Segments
+    updateMarketSegments: async (projectId, segments) => {
+      return await get().updateMarketability(projectId, {
+        marketSegments: segments
+      });
+    },
+
+    // Recommended Segments
+    updateRecommendedSegments: async (projectId, segments) => {
+      return await get().updateMarketability(projectId, {
+        recommendedSegments: segments.map(s => ({
+          segment: s.segment,
+          reason: s.reason
+        }))
+      });
+    },
+
+    // Positioning
+    updatePositioning: async (projectId, { nicheSuggestion, positioningStatement }) => {
+      return await get().updateMarketability(projectId, {
+        nicheSuggestion,
+        positioningStatement
+      });
+    },
+
+    // Progress Tracking
+    getMarketabilityProgress: (projectId) => {
+      const project = get().projects.find(p => p.id === projectId);
+      if (!project || !project.marketability) return { completed: 0, total: 3 };
+
+      let completed = 0;
+      if (project.marketability.marketSegments?.length > 0) completed++;
+      if (project.marketability.recommendedSegments?.length > 0) completed++;
+      if (project.marketability.nicheSuggestion && project.marketability.positioningStatement) completed++;
+
+      return {
+        completed,
+        total: 3,
+        hasSegments: project.marketability.marketSegments?.length > 0,
+        hasRecommendations: project.marketability.recommendedSegments?.length > 0,
+        hasPositioning: Boolean(project.marketability.nicheSuggestion)
+      };
+    }
   };
 });
