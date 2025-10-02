@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { saveProjectData, loadProjectData } from '@/lib/project-storage';
 import { ArrowLeft } from 'lucide-react';
 import { useEffect } from 'react';
+import { useProjectStore } from '../../lib/useProjectStore';
 
 const steps = [
     { id: 1, field: 'businessName', label: "First, what's your business name?", placeholder: "e.g., Artisan Bakes" },
@@ -71,9 +71,10 @@ const StepInput = ({ step, formData, handleInputChange, handleSelectChange }) =>
     );
 };
 
-export function NewProjectForm({ onProjectCreated }) {
+export function NewProjectForm() {
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({});
+    const addProject = useProjectStore((state) => state.addProject )
 
     useEffect(() => {
         // Clear previous project data when starting a new one
@@ -105,28 +106,34 @@ export function NewProjectForm({ onProjectCreated }) {
         }
     };
 
-    const handleSubmit = () => {
-        const projectId = `proj_${Date.now()}`;
-        
-        const newProject = {
-            id: projectId,
-            business: {
-                name: formData.businessName,
-                type: formData.businessType,
-                products: formData.productsSold,
-                description: formData.description,
-            },
-            marketability: {},
-            innovation: {
-                packaging: { notes: '', isAdaptive: false, isTested: false, isLogisticsReady: false },
-                variants: [],
-                feedback: { iterations: [], currentFeedbacks: [] }
-            },
-            financials: {},
-        };
-        saveProjectData(newProject);
-        onProjectCreated(projectId);
+const handleSubmit = async () => {
+    const projectId = `proj_${Date.now()}`;
+
+    const newProject = {
+        id: projectId,
+        business: {
+            name: formData.businessName,
+            type: formData.businessType,
+            products: formData.productsSold,
+            description: formData.description,
+        },
+        marketability: {},
+        innovation: {
+            packaging: { notes: '', isAdaptive: false, isTested: false, isLogisticsReady: false },
+            variants: [],
+            feedback: { iterations: [], currentFeedbacks: [] }
+        },
+        financials: {},
     };
+
+    try {
+        const saved = await addProject(newProject);
+        window.location.href = `../projects/${saved.id}/overview`;
+    } catch (err) {
+        console.error("Failed to save project:", err);
+        alert("Failed to save project");
+    }
+};
 
     const isNextDisabled = () => {
         const currentField = steps[currentStep - 1].field;

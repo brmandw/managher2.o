@@ -24,13 +24,7 @@ export default function NewProjectPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <NewProjectForm
-            onProjectCreated={(projectId) => {
-              console.log('Project created with ID:', projectId);
-              // Misal: redirect ke halaman berikutnya
-              router.push(`/projects/${projectId}/overview`);
-            }}
-          />
+          <NewProjectForm />
         </CardContent>
       </Card>
     </div>
