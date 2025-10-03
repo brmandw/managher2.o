@@ -31,7 +31,7 @@
 // }
 
 // projectApi.js
-const API_URL = "https://68d928fc90a75154f0d9af84.mockapi.io/project";
+const API_URL = "https://68d928fc90a75154f0d9af84.mockapi.io/project/projects";
 
 /**
  * Helpers
