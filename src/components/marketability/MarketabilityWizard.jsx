@@ -136,7 +136,7 @@ export function MarketabilityWizard({ projectData }) {
 
     toast({
       title: 'Stratégi Pasar Disimpan!',
-      description: 'Stratégi pasar Anda telah disimpan dengan sukses.',
+      description: 'Strategi pasar-mu telah disimpan dengan sukses.',
       className: 'bg-primary text-primary-foreground',
     });
     // router.push(`/projects/${projectData.id}/innovation`);
@@ -153,7 +153,7 @@ export function MarketabilityWizard({ projectData }) {
           <Card>
             <CardHeader>
               <CardTitle>Step 1: Segmentasi Pasar</CardTitle>
-              <CardDescription>Identifikasi segmentasi pasar potensial untuk bisnis Anda.</CardDescription>
+              <CardDescription>Identifikasi segmentasi pasar potensial untuk bisnis-mu.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -270,10 +270,10 @@ export function MarketabilityWizard({ projectData }) {
                 <div>
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
                     <span className="flex items-center justify-center w-6 h-6 rounded-full bg-accent text-accent-foreground text-sm">1</span>
-                    Validasi posisi pasarmu-mu
+                    Validasi posisi pasar-mu
                   </h4>
                   <p className="text-sm text-muted-foreground ml-8">
-                    Uji pernyataan posisi pasarmu-mu kepada segmen target melalui survei atau diskusi kelompok untuk memastikan pesanmu benar-benar tersampaikan.
+                    Uji pernyataan posisi pasar-mu kepada segmen target melalui survei atau diskusi kelompok untuk memastikan pesanmu benar-benar tersampaikan.
                   </p>
                 </div>
 
@@ -303,7 +303,7 @@ export function MarketabilityWizard({ projectData }) {
                     Bangun Konsistensi Brand
                   </h4>
                   <p className="text-sm text-muted-foreground ml-8">
-                    Buat panduan brand yang mencerminkan posisi pasarmu-mu untuk menjaga konsistensi di semua titik interaksi.
+                    Buat panduan brand yang mencerminkan posisi pasar-mu untuk menjaga konsistensi di semua titik interaksi.
                   </p>
                 </div>
 

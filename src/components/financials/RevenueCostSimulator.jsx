@@ -57,7 +57,7 @@ export function RevenueCostSimulator({ initialData }) {
             }
           }));
       
-          toast({ title: 'Simulasi Selesai!', description: 'Proyeksi keuangan Anda telah diperbarui.' });
+          toast({ title: 'Simulasi Selesai!', description: 'Proyeksi keuangan-mu telah diperbarui.' });
         } catch (error) {
           console.error('Simulation error:', error);
           toast({
@@ -76,7 +76,7 @@ export function RevenueCostSimulator({ initialData }) {
             <Card>
                 <CardHeader>
                     <CardTitle>Simulator Pendapatan & Biaya</CardTitle>
-                    <CardDescription>Masukkan detail produk Anda untuk mendapatkan proyeksi keuangan bulanan sederhana.</CardDescription>
+                    <CardDescription>Masukkan detail produk-mu untuk mendapatkan proyeksi keuangan bulanan sederhana.</CardDescription>
                 </CardHeader>
                 <form ref={formRef} onSubmit={handleSimulation}>
                     <CardContent className="grid md:grid-cols-3 gap-4">

@@ -42,7 +42,7 @@ export function VariantManager({ selectedSegments, initialVariants }) {
     }));
     toast({
       title: 'Varian Diperbarui',
-      description: 'Varian produk Anda telah disimpan.',
+      description: 'Varian produk-mu telah disimpan.',
     });
   }
 
@@ -82,7 +82,7 @@ export function VariantManager({ selectedSegments, initialVariants }) {
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
             <CardTitle>Variasi Produk/Fitur</CardTitle>
-            <CardDescription>Kelola berbagai versi produk atau layanan Anda.</CardDescription>
+            <CardDescription>Kelola berbagai versi produk atau layanan-mu.</CardDescription>
         </div>
         <Button onClick={openNewVariantModal}>
             <PlusCircle className="mr-2 h-4 w-4" />
@@ -122,7 +122,7 @@ export function VariantManager({ selectedSegments, initialVariants }) {
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <div className="mt-4 text-sm text-muted-foreground text-center p-2 bg-yellow-100/50 dark:bg-yellow-900/20 border border-yellow-200/50 dark:border-yellow-800/30 rounded-lg">
-                            💡 Tips: Berdasarkan segmen yang Anda pilih, pertimbangkan untuk menambahkan varian personalisasi (misalnya, nama kustom pada kemasan)!
+                            💡 Tips: Berdasarkan segmen yang-mu pilih, pertimbangkan untuk menambahkan varian personalisasi (misalnya, nama kustom pada kemasan)!
                         </div>
                     </TooltipTrigger>
                     <TooltipContent>

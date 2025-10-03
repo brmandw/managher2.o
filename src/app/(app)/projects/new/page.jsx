@@ -20,7 +20,7 @@ export default function NewProjectPage() {
         <CardHeader>
           <CardTitle className="text-2xl">Buat Proyek Bisnis</CardTitle>
           <CardDescription>
-            Berikan informasi tentang bisnismu. Ini akan membantu AI menyesuaikan rekomendasi sesuai kebutuhan.
+            Berikan informasi tentang bisnis-mu. Ini akan membantu AI menyesuaikan rekomendasi sesuai kebutuhan.
           </CardDescription>
         </CardHeader>
         <CardContent>

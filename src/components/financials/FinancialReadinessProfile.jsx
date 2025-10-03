@@ -34,7 +34,7 @@ export function FinancialReadinessProfile({ projectData }) {
         if (projectData.innovation?.variants && projectData.innovation.variants.length > 0) {
             score += 15;
         } else {
-            recommendations.push("Tambahkan setidaknya satu varian produk untuk mendiversifikasi penawaran Anda.");
+            recommendations.push("Tambahkan setidaknya satu varian produk untuk mendiversifikasi penawaran-mu.");
         }
         
         // Financials check
@@ -43,7 +43,7 @@ export function FinancialReadinessProfile({ projectData }) {
                 score += 35;
             } else {
                 score += 20;
-                recommendations.push("Cobalah meningkatkan margin keuntungan Anda di atas 20%.");
+                recommendations.push("Cobalah meningkatkan margin keuntungan-mu di atas 20%.");
             }
         } else {
             recommendations.push("Jalankan simulasi Pendapatan & Biaya.");
@@ -51,7 +51,7 @@ export function FinancialReadinessProfile({ projectData }) {
 
         const status = score > 70 ? 'ready' : score > 30 ? 'needs_work' : 'incomplete';
         if (status === 'ready' && recommendations.length === 0) {
-            recommendations.push("Profil bisnis Anda terlihat solid! Pertimbangkan untuk mengeksplorasi opsi pendanaan.");
+            recommendations.push("Profil bisnis-mu terlihat solid! Pertimbangkan untuk mengeksplorasi opsi pendanaan.");
         }
 
         const newProfile = { score, status, recommendations };
@@ -68,7 +68,7 @@ export function FinancialReadinessProfile({ projectData }) {
             setLoading(false);
             toast({
                 title: 'Profil Diperbarui',
-                description: 'Profil Kesiapan Finansial Anda telah dihitung.',
+                description: 'Profil Kesiapan Finansial-mu telah dihitung.',
             });
         }, 1000);
     }
@@ -90,7 +90,7 @@ export function FinancialReadinessProfile({ projectData }) {
         <Card className="sticky top-24">
             <CardHeader>
                 <CardTitle>Profil Kesiapan Finansial</CardTitle>
-                <CardDescription>Skor berbasis AI berdasarkan data proyek Anda.</CardDescription>
+                <CardDescription>Skor berbasis AI berdasarkan data proyek-mu.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
                 {profile ? (
@@ -110,7 +110,7 @@ export function FinancialReadinessProfile({ projectData }) {
                     </>
                 ) : (
                     <div className="text-center py-8 text-muted-foreground">
-                        <p>Klik "Hitung Profil" untuk menghasilkan skor Anda.</p>
+                        <p>Klik "Hitung Profil" untuk menghasilkan skor-mu.</p>
                     </div>
                 )}
             </CardContent>

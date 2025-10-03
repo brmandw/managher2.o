@@ -253,7 +253,7 @@ export default function ProjectOverviewPage() {
               </div>
 
               <p className="text-xs text-muted-foreground text-center pt-1">
-                Jadikan bisnismu next level
+                Jadikan bisnis-mu next level
               </p>
             </CardContent>
           </Card>

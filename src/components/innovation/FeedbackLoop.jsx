@@ -43,7 +43,7 @@ export function FeedbackLoop({ initialData }) {
     }));
     toast({
       title: 'Perubahan Umpan Balik',
-      description: 'Data umpan balik Anda telah disimpan.',
+      description: 'Data umpan balik-mu telah disimpan.',
     });
   }
 

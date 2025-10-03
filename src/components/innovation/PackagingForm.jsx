@@ -32,7 +32,7 @@ export function PackagingForm({ initialData }) {
     }));
     toast({
         title: 'Detail Packaging Disimpan',
-        description: 'Detail desain packaging Anda telah disimpan.',
+        description: 'Detail desain packaging-mu telah disimpan.',
     });
   }
 
@@ -47,7 +47,7 @@ export function PackagingForm({ initialData }) {
           <Label htmlFor="packaging-notes">Catatan Desain Kemasan</Label>
           <Textarea
             id="packaging-notes"
-            placeholder="e.g., impact-resistant, suitable for express delivery, vacuum sealed + bubble wrap for dry cakes"
+            placeholder="contoh: material tahan benturan, aman untuk pengiriman cepat, dikemas dengan vacuum seal dan bubble wrap khusus kue kering"
             rows={4}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
