@@ -15,6 +15,7 @@ export default function NewProjectPage() {
   }, []);
 
   return (
+  <div className="flex min-h-screen items-center justify-center">
     <div className="container max-w-3xl py-10">
       <Card>
         <CardHeader>
@@ -27,12 +28,12 @@ export default function NewProjectPage() {
           <NewProjectForm
             onProjectCreated={(projectId) => {
               console.log('Project created with ID:', projectId);
-              // Misal: redirect ke halaman berikutnya
               router.push(`/projects/${projectId}/overview`);
             }}
           />
         </CardContent>
       </Card>
     </div>
+  </div>
   );
 }

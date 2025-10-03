@@ -16,7 +16,7 @@ import { Logo } from '../icons/Logo';
 import { useRouter } from 'next/navigation';
 import { Sparkles } from 'lucide-react';
 
-export function AppHeader() {
+export function NewProjectHeader() {
   const router = useRouter();
 
   return (
@@ -35,11 +35,11 @@ export function AppHeader() {
           href="./"
           onClick={(e) => {
             e.preventDefault();
-            window.location.href = "./";
+            router.push('/dashboard');
           }}
           className="hidden sm:block bg-[#493D9E] text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-medium hover:bg-[#3d3182] transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm sm:text-base"
         >
-          Logout
+          Kembali
         </Link>
 
         {/* Mobile Logout Button */}
@@ -47,7 +47,7 @@ export function AppHeader() {
           href="./"
           onClick={(e) => {
             e.preventDefault();
-            window.location.href = "./";
+            router.push('/dashboard');
           }}
           className="sm:hidden bg-[#493D9E] text-white px-4 py-2 rounded-full font-medium hover:bg-[#3d3182] transition-all duration-300 text-sm"
         >

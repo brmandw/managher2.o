@@ -72,7 +72,7 @@ export default function ProjectOverviewPage() {
     );
   }
 
-  const { business, marketability, innovation, financials } = projectData;
+const { business = {}, marketability = {}, innovation = {}, financials = {} } = projectData || {};
 
   const getStatus = (module) => {
     if (!module) return "pending";
@@ -88,36 +88,47 @@ export default function ProjectOverviewPage() {
   };
 
   return (
-    <div className="space-y-4">
-      <div>
-        <h2 className="text-2xl font-bold tracking-tight">Project Overview</h2>
-        <p className="text-muted-foreground">
-          Ringkasan proyek bisnis-mu
-        </p>
+  <div className="space-y-3">
+      {/* Header Section */}
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 blur-3xl -z-10"></div>
+        <div className="pb-3">
+          <h2 className="text-2xl font-bold tracking-tight">Project Overview</h2>
+          <p className="text-lg text-muted-foreground">
+            Ringkasan proyek bisnis-mu
+          </p>
+        </div>
       </div>
+
+      {/* Business Info & Investment Cards */}
       <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
-        {/* Business Info Card - Takes 2 columns */}
+        {/* Business Info Card - Takes 3 columns */}
         <div className="md:col-span-3">
-          <Card className="h-full">
-            <CardHeader>
-              <CardTitle>{business.name}</CardTitle>
-              <CardDescription>
-                <Badge variant="secondary">{business.type}</Badge>
+          <Card className="h-full shadow-lg hover:shadow-xl transition-all duration-500 border-2 hover:border-primary/20 group">
+            <div className="h-1.5 bg-gradient-to-r from-primary to-accent rounded-t-lg"></div>
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl font-bold">{business.name}</CardTitle>
+              <CardDescription className="mt-2">
+                <Badge variant="secondary" className="text-sm px-3 py-1">{business.type}</Badge>
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-sm mb-1">
+            <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <h4 className="font-semibold text-base flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                   Products / Services
                 </h4>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-base leading-relaxed pl-3.5">
                   {business.products}
                 </p>
               </div>
               {business.description && (
-                <div>
-                  <h4 className="font-semibold text-sm mb-1">Description</h4>
-                  <p className="text-muted-foreground text-sm">
+                <div className="space-y-2 pt-4 border-t">
+                  <h4 className="font-semibold text-base flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                    Description
+                  </h4>
+                  <p className="text-muted-foreground text-base leading-relaxed pl-3.5">
                     {business.description}
                   </p>
                 </div>
@@ -126,134 +137,135 @@ export default function ProjectOverviewPage() {
           </Card>
         </div>
 
-        {/* Investment Readiness Card - Takes 1 column */}
+        {/* Investment Readiness Card - Takes 3 columns */}
         <div className="md:col-span-3">
-          <Card className="h-full bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base">
-                <TrendingUp className="h-5 w-5 text-primary" />
+          <Card className="h-full bg-gradient-to-br from-primary/5 to-accent/5 border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-500 hover:border-primary/40 group overflow-hidden relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <CardHeader className="relative z-10">
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <div className="p-2 rounded-lg bg-primary/10 group-hover:scale-110 transition-transform duration-300">
+                  <TrendingUp className="h-6 w-6 text-primary" />
+                </div>
                 Investment Readiness
               </CardTitle>
-              <CardDescription className="text-xs">
+              <CardDescription className="text-sm mt-2">
                 Kembangkan kebutuhan investasi dan evaluasi kesehatan keuangan.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-medium">Persentase Kembangkan Kebutuhan Investasi</span>
-                  <span className="text-2xl font-bold text-primary">30%</span>
+            <CardContent className="space-y-5 relative z-10">
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm font-semibold">Persentase Kembangkan Kebutuhan Investasi</span>
+                  <span className="text-3xl font-bold text-primary group-hover:scale-110 transition-transform duration-300">30%</span>
                 </div>
-                <div className="w-full bg-secondary rounded-full h-2.5">
+                <div className="w-full bg-secondary rounded-full h-3 shadow-inner">
                   <div
-                    className="bg-gradient-to-r from-primary to-accent h-2.5 rounded-full transition-all duration-500"
+                    className="bg-gradient-to-r from-primary to-accent h-3 rounded-full transition-all duration-500 shadow-md relative overflow-hidden"
                     style={{ width: "30%" }}
-                  ></div>
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
+                  </div>
                 </div>
               </div>
-              {/* 
-                            <div className="space-y-1.5 pt-1">
-                                <div className="flex items-center gap-2 text-xs">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
-                                    <span className="text-muted-foreground">Business fundamentals defined</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-xs">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-500"></div>
-                                    <span className="text-muted-foreground">Strategy in progress</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-xs">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
-                                    <span className="text-muted-foreground">Financials pending</span>
-                                </div>
-                            </div> */}
 
-              <p className="text-xs text-muted-foreground pt-2 border-t leading-relaxed">
+              <p className="text-sm text-muted-foreground pt-4 border-t leading-relaxed">
                 Kembangkan kebutuhan investasi dan evaluasi kesehatan keuangan.
               </p>
             </CardContent>
           </Card>
         </div>
       </div>
-      <div>
-        <h3 className="text-lg font-semibold mb-4">Progress-mu</h3>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+
+      {/* Progress Section */}
+      <div className="space-y-6">
+        <div className="flex items-center gap-3">
+          <h3 className="text-2xl font-bold">Progress-mu</h3>
+          <div className="flex-1 h-0.5 bg-gradient-to-r from-primary/30 to-transparent"></div>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <ModuleStatus
             title="Marketability"
             status={getStatus(marketability)}
             href={`/projects/${params.id}/marketability`}
-            icon={<Telescope className="h-5 w-5 text-primary" />}
+            icon={<Telescope className="h-6 w-6 text-primary" />}
           />
           <ModuleStatus
             title="Innovation"
             status={getStatus(innovation)}
             href={`/projects/${params.id}/innovation`}
-            icon={<Package className="h-5 w-5 text-primary" />}
+            icon={<Package className="h-6 w-6 text-primary" />}
           />
           <ModuleStatus
             title="Financials"
             status={getStatus(financials)}
             href={`/projects/${params.id}/financials`}
-            icon={<Wallet className="h-5 w-5 text-primary" />}
+            icon={<Wallet className="h-6 w-6 text-primary" />}
           />
         </div>
       </div>
-      <div className="p-8 space-y-6 bg-background">
+
+      {/* Premium Section */}
+      <div className="py-8 space-y-6 bg-background">
         <div className="grid gap-6 md:grid-cols-2">
           {/* Advanced Strategy */}
-          <Card className="relative overflow-hidden border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 via-accent/5 to-purple-500/5 hover:border-primary/50 transition-all cursor-not-allowed">
-            <div className="absolute top-2 right-2 z-10">
-              <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0">
-                <Crown className="h-3 w-3 mr-1" />
+          <Card className="relative overflow-hidden border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 via-accent/5 to-purple-500/5 hover:border-primary/50 transition-all duration-500 cursor-not-allowed shadow-lg hover:shadow-2xl group">
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div className="absolute top-3 right-3 z-10">
+              <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0 text-sm px-3 py-1.5 shadow-lg">
+                <Crown className="h-4 w-4 mr-1.5" />
                 Premium
               </Badge>
             </div>
-            <CardHeader className="pb-3">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10">
-                  <Sparkles className="h-5 w-5 text-primary" />
+            
+            <CardHeader className="pb-4 relative z-10">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 group-hover:scale-110 transition-transform duration-300">
+                  <Sparkles className="h-7 w-7 text-primary" />
                 </div>
-                <Lock className="h-4 w-4 text-muted-foreground ml-auto" />
+                <Lock className="h-5 w-5 text-muted-foreground ml-auto" />
               </div>
-              <CardTitle className="text-lg">Advanced Strategy</CardTitle>
-              <CardDescription className="text-sm">
+              <CardTitle className="text-2xl font-bold">Advanced Strategy</CardTitle>
+              <CardDescription className="text-base mt-2 leading-relaxed">
                 Dapatkan premium fitur untuk analisis kompetitif, strategi pertumbuhan, optimisasi presentasi investor, dan evaluasi risiko.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+            
+            <CardContent className="space-y-4 relative z-10">
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-base text-muted-foreground">
+                  <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0"></div>
                   <span>Analisis kompetitif menggunakan AI</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                <div className="flex items-center gap-3 text-base text-muted-foreground">
+                  <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0"></div>
                   <span>Jelajahi rute penetrasi pasar menggunakan AI</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                <div className="flex items-center gap-3 text-base text-muted-foreground">
+                  <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0"></div>
                   <span>Strategi pertumbuhan menggunakan AI</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                <div className="flex items-center gap-3 text-base text-muted-foreground">
+                  <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0"></div>
                   <span>Optimize investor pitch menggunakan AI</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                <div className="flex items-center gap-3 text-base text-muted-foreground">
+                  <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0"></div>
                   <span>Evaluasi risiko dan mitigasi menggunakan AI</span>
                 </div>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-3">
                 <Button
-                  size="sm"
-                  className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white border-0"
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-base font-semibold py-6"
                 >
-                  <Zap className="h-4 w-4 mr-2" />
+                  <Zap className="h-5 w-5 mr-2" />
                   Dapatkan Premium
                 </Button>
               </div>
 
-              <p className="text-xs text-muted-foreground text-center pt-1">
+              <p className="text-sm text-muted-foreground text-center pt-2">
                 Jadikan bisnis-mu next level
               </p>
             </CardContent>
@@ -262,9 +274,12 @@ export default function ProjectOverviewPage() {
         </div>
       </div>
 
-      <div className="text-center pt-4">
+      {/* Back Button */}
+      <div className="text-center pt-6">
         <Link href="/dashboard">
-          <Button variant="outline">Kembali ke Dashboard</Button>
+          <Button variant="outline" size="lg" className="px-8 text-base hover:border-primary hover:text-primary transition-all duration-300 hover:scale-105">
+            Kembali ke Dashboard
+          </Button>
         </Link>
       </div>
     </div>

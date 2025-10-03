@@ -111,9 +111,9 @@ function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FAF9FF] via-white to-[#F5F3FF]">
+    <div className="min-h-screen bg-gradient-to-br from-[#FAF9FF] via-white to-[#F5F3FF] md:px-16">
       {/* Navigation */}
-      <nav className="z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 fixed">
+      <nav className="z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 fixed pr-32">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-10 h-10 bg-gradient-to-br from-[#493D9E] to-[#B2A5FF] rounded-xl flex items-center justify-center">
@@ -156,7 +156,7 @@ function LandingPage() {
 
       {/* Hero Section */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center mt-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-center mt-10">
           <div
             className={`space-y-8 transition-all duration-700 ${
               scrollY < 100
@@ -502,85 +502,9 @@ function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 bg-gray-900 text-white py-12">
+      <footer className="relative z-10 text-black py-12">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#493D9E] to-[#B2A5FF] rounded-xl flex items-center justify-center">
-                  <Sparkles className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-2xl font-bold">ManagHer</span>
-              </div>
-              <p className="text-gray-400 leading-relaxed">
-                Platform yang memberdayakan perempuan solopreneur untuk
-                membangun bisnis impian mereka.
-              </p>
-            </div>
 
-            <div>
-              <h3 className="font-bold text-lg mb-4">Produk</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Fitur
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Harga
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Demo
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-4">Perusahaan</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Tentang Kami
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Karir
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-4">Dukungan</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Bantuan
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Kontak
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Privasi
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
 
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
             <p>

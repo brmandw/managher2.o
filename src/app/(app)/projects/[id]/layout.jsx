@@ -46,7 +46,7 @@ export default function ProjectLayout({children}) {
 
   return (
     <div className="container py-10">
-      <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
+      <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0 mt-16">
         <aside className="-mx-4 lg:w-1/5">
           <ProjectSidebar projectId={params.id} />
         </aside>
