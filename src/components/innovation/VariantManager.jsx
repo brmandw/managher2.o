@@ -41,8 +41,8 @@ export function VariantManager({ selectedSegments, initialVariants }) {
         }
     }));
     toast({
-      title: 'Variants Updated',
-      description: 'Your product variants have been saved.',
+      title: 'Varian Diperbarui',
+      description: 'Varian produk Anda telah disimpan.',
     });
   }
 
@@ -81,12 +81,12 @@ export function VariantManager({ selectedSegments, initialVariants }) {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
-            <CardTitle>Product/Feature Variations</CardTitle>
-            <CardDescription>Manage different versions of your products or services.</CardDescription>
+            <CardTitle>Variasi Produk/Fitur</CardTitle>
+            <CardDescription>Kelola berbagai versi produk atau layanan Anda.</CardDescription>
         </div>
         <Button onClick={openNewVariantModal}>
             <PlusCircle className="mr-2 h-4 w-4" />
-            Add New Variant
+            Tambah Varian Baru
         </Button>
       </CardHeader>
       <CardContent>
@@ -97,7 +97,7 @@ export function VariantManager({ selectedSegments, initialVariants }) {
                 <div>
                   <div className="font-semibold">{variant.name} <Badge variant="outline">{variant.type}</Badge></div>
                   <p className={`text-sm ${variant.isActive ? 'text-green-600' : 'text-muted-foreground'}`}>
-                    {variant.isActive ? 'Active' : 'Inactive'}
+                    {variant.isActive ? 'Aktif' : 'Tidak Aktif'}
                   </p>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -113,8 +113,8 @@ export function VariantManager({ selectedSegments, initialVariants }) {
           </div>
         ) : (
           <div className="text-center py-10 border-2 border-dashed rounded-lg">
-            <p className="text-muted-foreground">No product variants created yet.</p>
-            <p className="text-sm text-muted-foreground">Click "Add New Variant" to get started.</p>
+            <p className="text-muted-foreground">Belum ada varian produk yang dibuat.</p>
+            <p className="text-sm text-muted-foreground">Klik "Tambah Varian Baru" untuk memulai.</p>
           </div>
         )}
          {personalizationRecommended && (
@@ -122,11 +122,11 @@ export function VariantManager({ selectedSegments, initialVariants }) {
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <div className="mt-4 text-sm text-muted-foreground text-center p-2 bg-yellow-100/50 dark:bg-yellow-900/20 border border-yellow-200/50 dark:border-yellow-800/30 rounded-lg">
-                            💡 Tip: Based on your selected segments, consider adding a personalization variant (e.g., custom names on packaging)!
+                            💡 Tips: Berdasarkan segmen yang Anda pilih, pertimbangkan untuk menambahkan varian personalisasi (misalnya, nama kustom pada kemasan)!
                         </div>
                     </TooltipTrigger>
                     <TooltipContent>
-                        <p>Segments like 'remaja' or 'keluarga' often respond well to personalization.</p>
+                        <p>Segmen seperti 'remaja' atau 'keluarga' sering merespons baik terhadap personalisasi.</p>
                     </TooltipContent>
                 </Tooltip>
              </TooltipProvider>
@@ -160,36 +160,36 @@ function VariantModalDialog({ title, variant, onSave, onClose }) {
   return (
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
+          <DialogTitle>{title === "Edit Variant" ? "Edit Varian" : "Tambah Varian Baru"}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="variant-name" className="text-right">Name</Label>
-            <Input id="variant-name" value={name} onChange={(e) => setName(e.target.value)} className="col-span-3" placeholder="e.g., Matcha Latte, Travel Size" />
+            <Label htmlFor="variant-name" className="text-right">Nama</Label>
+            <Input id="variant-name" value={name} onChange={(e) => setName(e.target.value)} className="col-span-3" placeholder="contoh: Matcha Latte, Ukuran Travel" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="variant-type" className="text-right">Type</Label>
+            <Label htmlFor="variant-type" className="text-right">Tipe</Label>
             <Select onValueChange={(value) => setType(value)} value={type}>
               <SelectTrigger className="col-span-3">
-                <SelectValue placeholder="Select a variant type" />
+                <SelectValue placeholder="Pilih tipe varian" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="flavor">Flavor</SelectItem>
-                <SelectItem value="size">Size</SelectItem>
-                <SelectItem value="personalization">Personalization</SelectItem>
+                <SelectItem value="flavor">Rasa</SelectItem>
+                <SelectItem value="size">Ukuran</SelectItem>
+                <SelectItem value="personalization">Personalisasi</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="variant-active" className="text-right">Activate</Label>
+            <Label htmlFor="variant-active" className="text-right">Aktifkan</Label>
              <div className="col-span-3">
                  <Switch id="variant-active" checked={isActive} onCheckedChange={setIsActive} />
             </div>
           </div>
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <Button onClick={handleInternalSave}>Save</Button>
+          <Button variant="outline" onClick={onClose}>Batal</Button>
+          <Button onClick={handleInternalSave}>Simpan</Button>
         </DialogFooter>
       </DialogContent>
   )

@@ -10,18 +10,18 @@ import { ArrowLeft } from 'lucide-react';
 import { useEffect } from 'react';
 
 const steps = [
-    { id: 1, field: 'businessName', label: "First, what's your business name?", placeholder: "e.g., Artisan Bakes" },
-    { id: 2, field: 'businessType', label: "Great! What type of business is it?", type: 'select', options: ['F&B', 'Fashion', 'Services', 'Tech', 'Other'] },
-    { id: 3, field: 'productsSold', label: "What products or services do you sell?", placeholder: "e.g., 'Artisanal sourdough bread and custom cakes'", type: 'textarea' },
-    { id: 4, field: 'description', label: "Finally, give us a short, catchy description. (Optional)", placeholder: "e.g., 'The best sourdough in town, baked with love.'", type: 'textarea' },
+    { id: 1, field: 'businessName', label: "Pertama, apa nama bisnis Anda?", placeholder: "contoh: Artisan Bakes" },
+    { id: 2, field: 'businessType', label: "Bagus! Jenis bisnis apa?", type: 'select', options: ['F&B', 'Fashion', 'Services', 'Tech', 'Other'] },
+    { id: 3, field: 'productsSold', label: "Produk atau layanan apa yang Anda jual?", placeholder: "contoh: 'Roti sourdough artisan dan kue kustom'", type: 'textarea' },
+    { id: 4, field: 'description', label: "Terakhir, berikan deskripsi singkat yang menarik. (Opsional)", placeholder: "contoh: 'Roti sourdough terbaik di kota, dibuat dengan penuh cinta.'", type: 'textarea' },
 ];
 
 const getStepLabel = (step) => {
     switch (step) {
-        case 1: return "First, what's your business name?";
-        case 2: return "Great! What type of business is it?";
-        case 3: return "And what products or services do you sell?";
-        case 4: return "Finally, give us a short, catchy description (Optional).";
+        case 1: return "Pertama, apa nama bisnis Anda?";
+        case 2: return "Bagus! Jenis bisnis apa?";
+        case 3: return "Dan produk atau layanan apa yang Anda jual?";
+        case 4: return "Terakhir, berikan deskripsi singkat yang menarik (Opsional).";
         default: return "";
     }
 }
@@ -33,14 +33,14 @@ const StepInput = ({ step, formData, handleInputChange, handleSelectChange }) =>
         return (
             <Select onValueChange={(value) => handleSelectChange(currentStepInfo.field, value)} value={formData[currentStepInfo.field] || ''}>
                 <SelectTrigger className="text-lg h-12">
-                    <SelectValue placeholder="Select a business category" />
+                    <SelectValue placeholder="Pilih kategori bisnis" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="F&B">F&amp;B (Food &amp; Beverage)</SelectItem>
+                  <SelectItem value="F&B">F&amp;B (Makanan &amp; Minuman)</SelectItem>
                   <SelectItem value="Fashion">Fashion</SelectItem>
-                  <SelectItem value="Services">Services (Jasa)</SelectItem>
-                  <SelectItem value="Tech">Tech</SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
+                  <SelectItem value="Services">Jasa</SelectItem>
+                  <SelectItem value="Tech">Teknologi</SelectItem>
+                  <SelectItem value="Other">Lainnya</SelectItem>
                 </SelectContent>
             </Select>
         );
@@ -160,12 +160,12 @@ export function NewProjectForm({ onProjectCreated }) {
                 <div>
                     {currentStep > 1 && (
                         <Button variant="ghost" onClick={handleBack}>
-                            <ArrowLeft className="mr-2 h-4 w-4" /> Back
+                            <ArrowLeft className="mr-2 h-4 w-4" /> Kembali
                         </Button>
                     )}
                 </div>
                 <Button onClick={handleNext} disabled={isNextDisabled()} size="lg">
-                    {currentStep === steps.length ? 'Create Project' : 'Continue'}
+                    {currentStep === steps.length ? 'Buat Proyek' : 'Lanjutkan'}
                 </Button>
             </div>
         </div>

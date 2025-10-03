@@ -24,7 +24,7 @@ export function FinancialReadinessProfile({ projectData }) {
         if (projectData.marketability?.nicheSuggestion && projectData.marketability?.positioningStatement) {
             score += 35;
         } else {
-            recommendations.push("Complete Marketability analysis for a clearer strategy.");
+            recommendations.push("Lengkapi analisis Pemasaran untuk strategi yang lebih jelas.");
         }
 
         // Innovation check
@@ -34,7 +34,7 @@ export function FinancialReadinessProfile({ projectData }) {
         if (projectData.innovation?.variants && projectData.innovation.variants.length > 0) {
             score += 15;
         } else {
-            recommendations.push("Add at least one product variant to diversify your offering.");
+            recommendations.push("Tambahkan setidaknya satu varian produk untuk mendiversifikasi penawaran Anda.");
         }
         
         // Financials check
@@ -43,15 +43,15 @@ export function FinancialReadinessProfile({ projectData }) {
                 score += 35;
             } else {
                 score += 20;
-                recommendations.push("Try to improve your profit margin above 20%.");
+                recommendations.push("Cobalah meningkatkan margin keuntungan Anda di atas 20%.");
             }
         } else {
-            recommendations.push("Run the Revenue & Cost simulation.");
+            recommendations.push("Jalankan simulasi Pendapatan & Biaya.");
         }
 
         const status = score > 70 ? 'ready' : score > 30 ? 'needs_work' : 'incomplete';
         if (status === 'ready' && recommendations.length === 0) {
-            recommendations.push("Your business profile looks solid! Consider exploring funding options.");
+            recommendations.push("Profil bisnis Anda terlihat solid! Pertimbangkan untuk mengeksplorasi opsi pendanaan.");
         }
 
         const newProfile = { score, status, recommendations };
@@ -67,8 +67,8 @@ export function FinancialReadinessProfile({ projectData }) {
             }));
             setLoading(false);
             toast({
-                title: 'Profile Updated',
-                description: 'Your Financial Readiness Profile has been calculated.',
+                title: 'Profil Diperbarui',
+                description: 'Profil Kesiapan Finansial Anda telah dihitung.',
             });
         }, 1000);
     }
@@ -76,11 +76,11 @@ export function FinancialReadinessProfile({ projectData }) {
     const getStatusInfo = () => {
         switch(profile?.status) {
             case 'ready':
-                return { icon: <Award className="h-10 w-10 text-green-500" />, text: 'Ready for Investment', color: 'bg-green-500' };
+                return { icon: <Award className="h-10 w-10 text-green-500" />, text: 'Siap untuk Investasi', color: 'bg-green-500' };
             case 'needs_work':
-                return { icon: <AlertCircle className="h-10 w-10 text-yellow-500" />, text: 'Needs Improvement', color: 'bg-yellow-500' };
+                return { icon: <AlertCircle className="h-10 w-10 text-yellow-500" />, text: 'Perlu Perbaikan', color: 'bg-yellow-500' };
             default:
-                return { icon: <AlertCircle className="h-10 w-10 text-destructive" />, text: 'Incomplete', color: 'bg-destructive' };
+                return { icon: <AlertCircle className="h-10 w-10 text-destructive" />, text: 'Belum Lengkap', color: 'bg-destructive' };
         }
     }
     
@@ -89,8 +89,8 @@ export function FinancialReadinessProfile({ projectData }) {
     return (
         <Card className="sticky top-24">
             <CardHeader>
-                <CardTitle>Financial Readiness Profile</CardTitle>
-                <CardDescription>An AI-powered score based on your project data.</CardDescription>
+                <CardTitle>Profil Kesiapan Finansial</CardTitle>
+                <CardDescription>Skor berbasis AI berdasarkan data proyek Anda.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
                 {profile ? (
@@ -102,7 +102,7 @@ export function FinancialReadinessProfile({ projectData }) {
                         </div>
                         <Progress value={profile.score} className="w-full" />
                         <div>
-                            <h4 className="font-semibold mb-2">Recommendations:</h4>
+                            <h4 className="font-semibold mb-2">Rekomendasi:</h4>
                             <ul className="list-disc list-inside text-sm space-y-1 text-muted-foreground">
                                 {profile.recommendations.map((rec, i) => <li key={i}>{rec}</li>)}
                             </ul>
@@ -110,16 +110,16 @@ export function FinancialReadinessProfile({ projectData }) {
                     </>
                 ) : (
                     <div className="text-center py-8 text-muted-foreground">
-                        <p>Click "Calculate Profile" to generate your score.</p>
+                        <p>Klik "Hitung Profil" untuk menghasilkan skor Anda.</p>
                     </div>
                 )}
             </CardContent>
             <CardFooter className="flex-col gap-4">
                 <Button onClick={calculateProfile} disabled={loading} className="w-full">
-                    {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Calculate Profile'}
+                    {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Hitung Profil'}
                 </Button>
                 <Button variant="secondary" disabled={!profile} className="w-full">
-                    <FileDown className="mr-2 h-4 w-4" /> Export as PDF
+                    <FileDown className="mr-2 h-4 w-4" /> Ekspor sebagai PDF
                 </Button>
             </CardFooter>
         </Card>

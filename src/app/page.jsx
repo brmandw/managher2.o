@@ -58,28 +58,28 @@ function LandingPage() {
     },
     {
       icon: Target,
-      title: "Analisis Target Segment",
+      title: "Analisis Target Segmen",
       description:
         "Identifikasi siapa pelanggan ideal berdasarkan deskripsi bisnis dengan bantuan AI yang cerdas.",
       color: "from-indigo-500 to-purple-500",
     },
     {
       icon: Sparkles,
-      title: "Unique Value Proposition Generator",
+      title: "Generator Proposisi Nilai Unik",
       description:
-        "Bangun pesan nilai unik yang relevan dengan target segment untuk menonjol di pasar.",
+        "Bangun pesan nilai unik yang relevan dengan segmen target untuk menonjol di pasar.",
       color: "from-purple-600 to-pink-500",
     },
     {
       icon: Lightbulb,
-      title: "Innovation Lab",
+      title: "Lab Inovasi",
       description:
         "Eksplorasi peluang inovasi melalui iterasi produk, kemasan, dan umpan balik pengguna.",
       color: "from-yellow-400 to-orange-400",
     },
     {
       icon: TrendingUp,
-      title: "Financial & Investment Readiness",
+      title: "Kesiapan Finansial & Investasi",
       description:
         "Proyeksi pendapatan & biaya bulanan, plus analisis kesiapan bisnis untuk menarik investor.",
       color: "from-green-500 to-emerald-600",
@@ -187,6 +187,7 @@ function LandingPage() {
                 onClick={async () => {
                   setIsLoading(true);
                   await router.push("./dashboard");
+                  window.location.href="./dashboard";
                 }}
                 disabled={isLoading}
                 className="group bg-[#493D9E] text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#3d3182] transition-all duration-300 hover:shadow-2xl hover:scale-105 flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
