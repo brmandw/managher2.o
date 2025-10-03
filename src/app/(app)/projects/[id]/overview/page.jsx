@@ -106,13 +106,13 @@ const { business = {}, marketability = {}, innovation = {}, financials = {} } = 
         <div className="md:col-span-3">
           <Card className="h-full shadow-lg hover:shadow-xl transition-all duration-500 border-2 hover:border-primary/20 group">
             <div className="h-1.5 bg-gradient-to-r from-primary to-accent rounded-t-lg"></div>
-            <CardHeader className="pb-4">
+            <CardHeader>
               <CardTitle className="text-xl font-bold">{business.name}</CardTitle>
               <CardDescription className="mt-2">
-                <Badge variant="secondary" className="text-sm px-3 py-1">{business.type}</Badge>
+                <Badge variant="secondary" className="text-sm px-3">{business.type}</Badge>
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="mt-2">
               <div className="space-y-2">
                 <h4 className="font-semibold text-base flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
@@ -178,7 +178,7 @@ const { business = {}, marketability = {}, innovation = {}, financials = {} } = 
 
       {/* Progress Section */}
       <div className="space-y-6">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mt-8">
           <h3 className="text-2xl font-bold">Progress-mu</h3>
           <div className="flex-1 h-0.5 bg-gradient-to-r from-primary/30 to-transparent"></div>
         </div>

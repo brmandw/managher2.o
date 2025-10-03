@@ -51,8 +51,8 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* CTA Card dengan desain yang lebih bold */}
-      <div className="mb-20">
+      {/* CTA Card */}
+      <div className={`${projectData?.id ? 'hidden' : 'mb-20'}`}>
         <Card className="max-w-4xl mx-auto border-accent text-accent-foreground shadow-2xl hover:shadow-accent/20 transition-all duration-500 border-0 overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <CardHeader className="text-center pb-6 pt-8 relative">
@@ -80,7 +80,7 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      {/* Projects Grid dengan header yang lebih baik */}
+      {/* Projects Grid */}
       <div className={`${!projectData?.id ? 'hidden' : ''}`}>
         <div className="flex items-center justify-between mb-8">
           <div>
