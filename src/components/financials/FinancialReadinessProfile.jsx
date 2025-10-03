@@ -41,6 +41,7 @@ export function FinancialReadinessProfile({ projectData }) {
         if (projectData.financials?.projection) {
             if (projectData.financials.projection.margin > 20) {
                 score += 35;
+
             } else {
                 score += 20;
                 recommendations.push("Cobalah meningkatkan margin keuntungan-mu di atas 20%.");

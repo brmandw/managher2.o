@@ -25,6 +25,7 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useParams } from "next/navigation";
+import { useProjectDataStore } from "@/lib/useProjectData";
 
 const ModuleStatus = ({ title, status, href, icon }) => {
   const isComplete = status === "complete";
@@ -53,7 +54,7 @@ const ModuleStatus = ({ title, status, href, icon }) => {
 };
 
 export default function ProjectOverviewPage() {
-  const [projectData, setProjectData] = useState(null);
+  const { projectData, setProjectData } = useProjectDataStore();
   const params = useParams();
 
   useEffect(() => {

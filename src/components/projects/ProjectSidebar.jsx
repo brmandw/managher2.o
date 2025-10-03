@@ -27,7 +27,7 @@ export function ProjectSidebar({ className, projectId }) {
     },
     {
       href: `/projects/${projectId}/financials`,
-      title: 'Financials',
+      title: 'Financials Simulator',
       icon: <Wallet className="mr-2 h-4 w-4" />,
     },
   ];

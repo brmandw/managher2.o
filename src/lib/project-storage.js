@@ -1,5 +1,7 @@
 // MOCK MODE — All project data is temporarily stored in localStorage.
 
+import { useProjectDataStore } from "./useProjectData";
+
 const STORAGE_KEY = 'currentProject';
 
 /**
@@ -63,4 +65,5 @@ export function updateProjectData(dataUpdate) {
 
     const newData = deepMerge(currentData, update);
     saveProjectData(newData);
+    useProjectDataStore.getState().setProjectData(newData);
 }

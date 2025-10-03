@@ -6,9 +6,10 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { loadProjectData } from '@/lib/project-storage';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useParams } from 'next/navigation';
+import { useProjectDataStore } from '@/lib/useProjectData';
 
 export default function MarketabilityPage() {
-  const [projectData, setProjectData] = useState(null);
+  const { projectData, setProjectData } = useProjectDataStore();
   const [loading, setLoading] = useState(true);
   const params = useParams()
   
