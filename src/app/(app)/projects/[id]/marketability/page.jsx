@@ -29,10 +29,10 @@ export default function MarketabilityPage() {
       return (
           <Card>
               <CardHeader>
-                  <CardTitle>Project Not Found</CardTitle>
+                  <CardTitle>Proyek Tidak Ditemukan</CardTitle>
               </CardHeader>
               <CardContent>
-                  <p>Could not find project data. Please start a new project.</p>
+                  <p>Proyek tidak ditemukan. Silakan buat proyek baru.</p>
               </CardContent>
           </Card>
       )

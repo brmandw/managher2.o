@@ -42,8 +42,8 @@ export function FeedbackLoop({ initialData }) {
         }
     }));
     toast({
-      title: 'Feedback Updated',
-      description: 'Your feedback data has been saved to localStorage.',
+      title: 'Perubahan Umpan Balik',
+      description: 'Data umpan balik Anda telah disimpan.',
     });
   }
 
@@ -84,33 +84,33 @@ export function FeedbackLoop({ initialData }) {
       <div className="md:col-span-1">
         <Card>
           <CardHeader>
-            <CardTitle>Collect Feedback</CardTitle>
-            <CardDescription>Manually input feedback from your customers for the current iteration.</CardDescription>
+            <CardTitle>Koleksi Umpan</CardTitle>
+            <CardDescription>Input manual umpan balik dari pelanggan untuk iterasi saat ini.</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleAddFeedback} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="source">Source</Label>
+                <Label htmlFor="source">Sumber Umpan</Label>
                 <Select name="source" required>
                   <SelectTrigger id="source">
-                    <SelectValue placeholder="Select source" />
+                    <SelectValue placeholder="Pilih sumber umpan" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Marketplace">Marketplace</SelectItem>
-                    <SelectItem value="Social Media">Social Media</SelectItem>
-                    <SelectItem value="Internal Form">Internal Form</SelectItem>
+                    <SelectItem value="Social Media">Media Sosial</SelectItem>
+                    <SelectItem value="Internal Form">Form Internal</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="comment">Comment</Label>
-                <Textarea id="comment" name="comment" required placeholder="Customer's feedback..." />
+                <Label htmlFor="comment">Umpan Balik Pelanggan</Label>
+                <Textarea id="comment" name="comment" required placeholder="Umpan balik pelanggan..." />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="rating">Rating (1-5)</Label>
                 <Input id="rating" name="rating" type="number" min="1" max="5" required />
               </div>
-              <Button type="submit" className="w-full">Add Feedback</Button>
+              <Button type="submit" className="w-full">Simpan</Button>
             </form>
           </CardContent>
         </Card>
@@ -122,19 +122,19 @@ export function FeedbackLoop({ initialData }) {
             </CardHeader>
             <CardContent className="flex items-center justify-between">
                 <div>
-                    <p className="text-muted-foreground">Last iteration started: {format(lastIterationDate, 'PPP')}</p>
+                    <p className="text-muted-foreground">Iterasi terakhir pada: {format(lastIterationDate, 'PPP')}</p>
                     <p className="text-muted-foreground">
-                        Next recommended iteration on: <span className="font-bold text-foreground">{format(recommendedNextIteration, 'PPP')}</span>
+                        Rekomendasi iterasi selanjutnya: <span className="font-bold text-foreground">{format(recommendedNextIteration, 'PPP')}</span>
                     </p>
                 </div>
-                <Button onClick={startNewIteration} disabled={feedbacks.length === 0}>Start New Iteration</Button>
+                <Button onClick={startNewIteration} disabled={feedbacks.length === 0}>Mulai Iterasi Baru</Button>
             </CardContent>
         </Card>
         
         <Card>
           <CardHeader>
-            <CardTitle>Current Feedback</CardTitle>
-            <CardDescription>Feedback collected for the current iteration cycle.</CardDescription>
+            <CardTitle>Umpan Balik Saat Ini</CardTitle>
+            <CardDescription>Umpan balik yang dikumpulkan untuk iterasi saat ini.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {feedbacks.length > 0 ? (

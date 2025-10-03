@@ -28,10 +28,10 @@ export default function FinancialsPage() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Project Not Found</CardTitle>
+                <CardTitle>Proyek Tidak Ditemukan</CardTitle>
             </CardHeader>
             <CardContent>
-                <p>Could not find project data. Please start a new project.</p>
+                <p>Proyek tidak ditemukan. Silakan buat proyek baru.</p>
             </CardContent>
         </Card>
     )
@@ -42,7 +42,7 @@ export default function FinancialsPage() {
       <div>
         <h2 className="text-2xl font-bold tracking-tight">Financial Readiness</h2>
         <p className="text-muted-foreground">
-          Simulate your revenue and assess your business's financial health.
+          Simulasi keuntungan dan evaluasi kesehatan keuangan bisnismu.
         </p>
       </div>
 

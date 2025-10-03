@@ -18,9 +18,9 @@ export default function NewProjectPage() {
     <div className="container max-w-3xl py-10">
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Create a New Business Project</CardTitle>
+          <CardTitle className="text-2xl">Buat Proyek Bisnis</CardTitle>
           <CardDescription>
-            Tell us about your business. This information will help our AI tailor its suggestions for you.
+            Berikan informasi tentang bisnismu. Ini akan membantu AI menyesuaikan rekomendasi sesuai kebutuhan.
           </CardDescription>
         </CardHeader>
         <CardContent>

@@ -91,7 +91,7 @@ export default function ProjectOverviewPage() {
       <div>
         <h2 className="text-2xl font-bold tracking-tight">Project Overview</h2>
         <p className="text-muted-foreground">
-          A summary of your business project.
+          Ringkasan proyek bisnis-mu
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
@@ -134,13 +134,13 @@ export default function ProjectOverviewPage() {
                 Investment Readiness
               </CardTitle>
               <CardDescription className="text-xs">
-                Your progress towards investment-ready status
+                Kembangkan kebutuhan investasi dan evaluasi kesehatan keuangan.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-medium">Overall Progress</span>
+                  <span className="text-xs font-medium">Persentase Kembangkan Kebutuhan Investasi</span>
                   <span className="text-2xl font-bold text-primary">30%</span>
                 </div>
                 <div className="w-full bg-secondary rounded-full h-2.5">
@@ -167,14 +167,14 @@ export default function ProjectOverviewPage() {
                             </div> */}
 
               <p className="text-xs text-muted-foreground pt-2 border-t leading-relaxed">
-                Complete all modules to reach 100% investment readiness.
+                Kembangkan kebutuhan investasi dan evaluasi kesehatan keuangan.
               </p>
             </CardContent>
           </Card>
         </div>
       </div>
       <div>
-        <h3 className="text-lg font-semibold mb-4">Your Progress</h3>
+        <h3 className="text-lg font-semibold mb-4">Progress-mu</h3>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <ModuleStatus
             title="Marketability"
@@ -198,7 +198,7 @@ export default function ProjectOverviewPage() {
       </div>
       <div className="p-8 space-y-6 bg-background">
         <div className="grid gap-6 md:grid-cols-2">
-          {/* Advanced Financials */}
+          {/* Advanced Strategy */}
           <Card className="relative overflow-hidden border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 via-accent/5 to-purple-500/5 hover:border-primary/50 transition-all cursor-not-allowed">
             <div className="absolute top-2 right-2 z-10">
               <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0">
@@ -215,30 +215,30 @@ export default function ProjectOverviewPage() {
               </div>
               <CardTitle className="text-lg">Advanced Strategy</CardTitle>
               <CardDescription className="text-sm">
-                Unlock premium insights & features
+                Dapatkan premium fitur untuk analisis kompetitif, strategi pertumbuhan, optimisasi presentasi investor, dan evaluasi risiko.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>AI-powered competitive analysis</span>
+                  <span>Analisis kompetitif menggunakan AI</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Market penetration roadmap</span>
+                  <span>Jelajahi rute penetrasi pasar menggunakan AI</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Growth hacking strategies</span>
+                  <span>Strategi pertumbuhan menggunakan AI</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Investor pitch optimization</span>
+                  <span>Optimize investor pitch menggunakan AI</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Risk assessment & mitigation</span>
+                  <span>Evaluasi risiko dan mitigasi menggunakan AI</span>
                 </div>
               </div>
 
@@ -248,81 +248,22 @@ export default function ProjectOverviewPage() {
                   className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white border-0"
                 >
                   <Zap className="h-4 w-4 mr-2" />
-                  Upgrade to Premium
+                  Dapatkan Premium
                 </Button>
               </div>
 
               <p className="text-xs text-muted-foreground text-center pt-1">
-                Take your business to the next level
+                Jadikan bisnismu next level
               </p>
             </CardContent>
           </Card>
 
-          {/* Advanced Strategy Card (Premium) */}
-          <Card className="relative overflow-hidden border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 via-accent/5 to-purple-500/5 hover:border-primary/50 transition-all cursor-not-allowed">
-            <div className="absolute top-2 right-2 z-10">
-              <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0">
-                <Crown className="h-3 w-3 mr-1" />
-                Premium
-              </Badge>
-            </div>
-            <CardHeader className="pb-3">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10">
-                  <Sparkles className="h-5 w-5 text-primary" />
-                </div>
-                <Lock className="h-4 w-4 text-muted-foreground ml-auto" />
-              </div>
-              <CardTitle className="text-lg">Advanced Strategy</CardTitle>
-              <CardDescription className="text-sm">
-                Unlock premium insights & features
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>AI-powered competitive analysis</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Market penetration roadmap</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Growth hacking strategies</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Investor pitch optimization</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Risk assessment & mitigation</span>
-                </div>
-              </div>
-
-              <div className="pt-2">
-                <Button
-                  size="sm"
-                  className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white border-0"
-                >
-                  <Zap className="h-4 w-4 mr-2" />
-                  Upgrade to Premium
-                </Button>
-              </div>
-
-              <p className="text-xs text-muted-foreground text-center pt-1">
-                Take your business to the next level
-              </p>
-            </CardContent>
-          </Card>
         </div>
       </div>
 
       <div className="text-center pt-4">
         <Link href="/dashboard">
-          <Button variant="outline">Back to Dashboard</Button>
+          <Button variant="outline">Kembali ke Dashboard</Button>
         </Link>
       </div>
     </div>

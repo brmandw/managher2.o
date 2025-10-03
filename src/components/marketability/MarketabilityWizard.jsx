@@ -60,7 +60,7 @@ export function MarketabilityWizard({ projectData }) {
       setCurrentStep(2);
     } catch (error) {
       console.error(error);
-      toast({ variant: 'destructive', title: 'Error', description: 'Failed to suggest market segments.' });
+      toast({ variant: 'destructive', title: 'Error', description: 'Gagal menyarankan segmentasi pasar.' });
     } finally {
       setLoading(false);
     }
@@ -86,7 +86,7 @@ export function MarketabilityWizard({ projectData }) {
       setCurrentStep(3);
     } catch (error) {
       console.error(error);
-      toast({ variant: 'destructive', title: 'Error', description: 'Failed to recommend target segments.' });
+      toast({ variant: 'destructive', title: 'Error', description: 'Gagal merekomendasikan segmentasi pasar target.' });
     } finally {
       setLoading(false);
     }
@@ -114,7 +114,7 @@ export function MarketabilityWizard({ projectData }) {
       setCurrentStep(4);
     } catch (error) {
       console.error(error);
-      toast({ variant: 'destructive', title: 'Error', description: 'Failed to suggest positioning.' });
+      toast({ variant: 'destructive', title: 'Error', description: 'Gagal menyarankan posisi pasar.' });
     } finally {
       setLoading(false);
     }
@@ -135,8 +135,8 @@ export function MarketabilityWizard({ projectData }) {
     }));
 
     toast({
-      title: 'Strategy Saved!',
-      description: 'Your marketability strategy has been successfully saved.',
+      title: 'Stratégi Pasar Disimpan!',
+      description: 'Stratégi pasar Anda telah disimpan dengan sukses.',
       className: 'bg-primary text-primary-foreground',
     });
     // router.push(`/projects/${projectData.id}/innovation`);
@@ -152,12 +152,12 @@ export function MarketabilityWizard({ projectData }) {
         return (
           <Card>
             <CardHeader>
-              <CardTitle>Step 1: Market Segmentation</CardTitle>
-              <CardDescription>Let&apos;s identify potential market segments for your business.</CardDescription>
+              <CardTitle>Step 1: Segmentasi Pasar</CardTitle>
+              <CardDescription>Identifikasi segmentasi pasar potensial untuk bisnis Anda.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <p>Based on your business details, our AI will suggest relevant market segments.</p>
+                <p>Berdasarkan data bisnismu, AI akan menyarankan segmentasi pasar potensial.</p>
                 <div className="p-4 border rounded-lg bg-background/50">
                   <h4 className="font-semibold">{projectData.business.name}</h4>
                   <h5 className="text-sm"><Badge variant="secondary">{projectData.business.type}</Badge></h5>
@@ -168,7 +168,7 @@ export function MarketabilityWizard({ projectData }) {
             <CardFooter>
               <Button onClick={handleSuggestSegments} disabled={loading} className="ml-auto bg-accent text-accent-foreground hover:bg-accent/80">
                 {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Lightbulb className="mr-2 h-4 w-4" />}
-                Suggest Segments
+                Saran Segmentasi Pasar
               </Button>
             </CardFooter>
           </Card>
@@ -177,24 +177,24 @@ export function MarketabilityWizard({ projectData }) {
         return (
           <Card>
             <CardHeader>
-              <CardTitle>Step 2: Targeting</CardTitle>
-              <CardDescription>From the generated segments, let&apos;s find the best ones to target.</CardDescription>
+              <CardTitle>Step 2: Rekomendasi Target Segmentasi Pasar</CardTitle>
+              <CardDescription>Dari segmentasi pasar yang dihasilkan, AI akan merekomendasikan dua segmentasi pasar target terbaik.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <p className="font-semibold">Suggested Market Segments:</p>
+                <p className="font-semibold">Rekomendasi Segmentasi Pasar Target:</p>
                 <div className="flex flex-wrap gap-2">
                   {marketSegments.map((segment, index) => (
                     <Badge key={index} variant="outline" className="text-lg py-1 px-3">{segment}</Badge>
                   ))}
                 </div>
-                <p className="pt-4">Now, the AI will analyze these segments based on purchasing power, market size, and accessibility to recommend the top 2.</p>
+                <p className="pt-4">Sekarang, AI akan menganalisis kedua segmentasi pasar ini berdasarkan daya beli, ukuran pasar, dan aksesibilitas untuk merekomendasikan dua segmentasi pasar target terbaik.</p>
               </div>
             </CardContent>
             <CardFooter>
               <Button onClick={handleRecommendTargets} disabled={loading} className="ml-auto bg-accent text-accent-foreground hover:bg-accent/80">
                 {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Target className="mr-2 h-4 w-4" />}
-                Recommend Target Segments
+                Rekomendasikan Segmentasi Pasar Target
               </Button>
             </CardFooter>
           </Card>
@@ -203,12 +203,12 @@ export function MarketabilityWizard({ projectData }) {
         return (
           <Card>
             <CardHeader>
-              <CardTitle>Step 3: Positioning</CardTitle>
-              <CardDescription>Define your unique niche and how you want to be perceived by your target market.</CardDescription>
+              <CardTitle>Step 3: Rekomendasi Niche dan Posisi Pasar</CardTitle>
+              <CardDescription>Definisikan niche unikmu dan bagaimana kamu ingin dikenali oleh pasar targetmu.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <h3 className="font-semibold mb-2">Recommended Target Segments:</h3>
+                <h3 className="font-semibold mb-2">Rekomendasi Segmentasi Pasar Target:</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {recommendedSegments.map((rec, index) => (
                     <Card key={index} className="bg-background/50">
@@ -222,12 +222,12 @@ export function MarketabilityWizard({ projectData }) {
                   ))}
                 </div>
               </div>
-              <p>With these targets in mind, let's generate a niche suggestion and a powerful positioning statement.</p>
+              <p className="pt-4">Dengan mempertimbangkan kedua segmentasi pasar target ini, mari kita buat saran niche dan pernyataan posisi yang kuat.</p>
             </CardContent>
             <CardFooter>
               <Button onClick={handleSuggestPositioning} disabled={loading} className="ml-auto bg-accent text-accent-foreground hover:bg-accent/80">
                 {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <PenLine className="mr-2 h-4 w-4" />}
-                Suggest Niche &amp; Positioning
+                Rekomendasikan Niche &amp; Posisi Pasar
               </Button>
             </CardFooter>
           </Card>
@@ -237,84 +237,85 @@ export function MarketabilityWizard({ projectData }) {
           <div className={`grid gap-6 ${showTips ? 'md:grid-cols-2' : 'grid-cols-1'}`}>
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2"><PartyPopper className="text-accent" /> Your Marketability Strategy is Ready!</CardTitle>
-                <CardDescription>Here is the AI-generated strategy. You can edit it to better fit your vision.</CardDescription>
+                <CardTitle className="flex items-center gap-2"><PartyPopper className="text-accent" /> Strategi Marketabilitymu Siap!</CardTitle>
+                <CardDescription>Berikut adalah strategi marketability yang dihasilkan oleh AI. Kamu bisa mengeditnya untuk lebih sesuai dengan visimu.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
-                  <h3 className="font-semibold mb-2">Niche Suggestion</h3>
+                  <h3 className="font-semibold mb-2">Rekomendasi Niche</h3>
                   <Textarea id="niche-suggestion" defaultValue={nicheAndPositioning?.nicheSuggestion} rows={3} className="text-base" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">Positioning Statement</h3>
+                  <h3 className="font-semibold mb-2">Rekomendasi Posisi Pasar</h3>
                   <Textarea id="positioning-statement" defaultValue={nicheAndPositioning?.positioningStatement} rows={5} className="text-base" />
                 </div>
               </CardContent>
               <CardFooter>
                 <Button onClick={handleSaveStrategy} size="lg" className="ml-auto bg-primary text-primary-foreground hover:bg-primary/90">
-                  Save and Continue to Innovation
+                  Simpan dan Lanjutkan
                 </Button>
               </CardFooter>
             </Card>
 
             {showTips && (
-              <Card className="bg-accent/5 border-accent/20">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Lightbulb className="text-accent" size={24} />
-                    Next Steps & Tips
-                  </CardTitle>
-                  <CardDescription>How to leverage your niche and positioning effectively</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold mb-2 flex items-center gap-2">
-                      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-accent text-accent-foreground text-sm">1</span>
-                      Validate Your Positioning
-                    </h4>
-                    <p className="text-sm text-muted-foreground ml-8">
-                      Test your positioning statement with your target segments through surveys or focus groups to ensure it resonates.
-                    </p>
-                  </div>
+            <Card className="bg-accent/5 border-accent/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Lightbulb className="text-accent" size={24} />
+                  Langkah Selanjutnya & Tips
+                </CardTitle>
+                <CardDescription>Cara memanfaatkan ceruk pasar dan posisi pasarmu secara efektif</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-accent text-accent-foreground text-sm">1</span>
+                    Validasi posisi pasarmu-mu
+                  </h4>
+                  <p className="text-sm text-muted-foreground ml-8">
+                    Uji pernyataan posisi pasarmu-mu kepada segmen target melalui survei atau diskusi kelompok untuk memastikan pesanmu benar-benar tersampaikan.
+                  </p>
+                </div>
 
-                  <div>
-                    <h4 className="font-semibold mb-2 flex items-center gap-2">
-                      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-accent text-accent-foreground text-sm">2</span>
-                      Align Your Messaging
-                    </h4>
-                    <p className="text-sm text-muted-foreground ml-8">
-                      Ensure all marketing materials, website content, and communications reflect your positioning statement consistently.
-                    </p>
-                  </div>
+                <div>
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-accent text-accent-foreground text-sm">2</span>
+                    Selaraskan Pesan
+                  </h4>
+                  <p className="text-sm text-muted-foreground ml-8">
+                    Pastikan semua materi pemasaran, konten situs web, dan komunikasi apa pun selalu konsisten dengan posisi pasarmu.
+                  </p>
+                </div>
 
-                  <div>
-                    <h4 className="font-semibold mb-2 flex items-center gap-2">
-                      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-accent text-accent-foreground text-sm">3</span>
-                      Differentiate Strategically
-                    </h4>
-                    <p className="text-sm text-muted-foreground ml-8">
-                      Identify 2-3 unique value propositions that set you apart from competitors in your niche.
-                    </p>
-                  </div>
+                <div>
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-accent text-accent-foreground text-sm">3</span>
+                    Bedakan Secara Strategis
+                  </h4>
+                  <p className="text-sm text-muted-foreground ml-8">
+                    Tentukan 2–3 proposisi nilai unik yang benar-benar membedakanmu dari para kompetitor di ceruk pasarmu.
+                  </p>
+                </div>
 
-                  <div>
-                    <h4 className="font-semibold mb-2 flex items-center gap-2">
-                      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-accent text-accent-foreground text-sm">4</span>
-                      Build Brand Consistency
-                    </h4>
-                    <p className="text-sm text-muted-foreground ml-8">
-                      Create brand guidelines that reflect your positioning to maintain consistency across all touchpoints.
-                    </p>
-                  </div>
+                <div>
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-accent text-accent-foreground text-sm">4</span>
+                    Bangun Konsistensi Brand
+                  </h4>
+                  <p className="text-sm text-muted-foreground ml-8">
+                    Buat panduan brand yang mencerminkan posisi pasarmu-mu untuk menjaga konsistensi di semua titik interaksi.
+                  </p>
+                </div>
 
-                  <div className="pt-4 mt-4 border-t">
-                    <p className="text-sm font-medium mb-2">🚀 Ready for Innovation?</p>
-                    <p className="text-sm text-muted-foreground">
-                      With your marketability strategy in place, you can now focus on developing innovative solutions that align with your target segments' needs.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+                <div className="pt-4 mt-4 border-t">
+                  <p className="text-sm font-medium mb-2">🚀 Siap Berinovasi?</p>
+                  <p className="text-sm text-muted-foreground">
+                    Dengan strategi pemasaran yang sudah matang, kini saatnya fokus mengembangkan solusi inovatif yang benar-benar relevan dengan kebutuhan segmen targetmu.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
             )}
           </div>
         );

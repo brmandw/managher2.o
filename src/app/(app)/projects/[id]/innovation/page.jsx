@@ -32,10 +32,10 @@ export default function InnovationPage() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Project Not Found</CardTitle>
+                <CardTitle>Proyek Tidak Ditemukan</CardTitle>
             </CardHeader>
             <CardContent>
-                <p>Could not find project data. Please start a new project.</p>
+                <p>Proyek tidak ditemukan. Silakan buat proyek baru.</p>
             </CardContent>
         </Card>
     )
@@ -46,9 +46,9 @@ export default function InnovationPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Sustainable Innovation</h2>
+        <h2 className="text-2xl font-bold tracking-tight">Inovasi Berkelanjutan</h2>
         <p className="text-muted-foreground">
-          Continuously improve your product and packaging based on market feedback.
+          Perbarui produk dan paket berdasarkan umpan balik pasar.
         </p>
       </div>
 
@@ -56,15 +56,15 @@ export default function InnovationPage() {
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="packaging">
             <Package className="mr-2 h-4 w-4" />
-            Packaging
+            Kemasan Produk
           </TabsTrigger>
           <TabsTrigger value="variants">
             <ShoppingBag className="mr-2 h-4 w-4" />
-            Product Variants
+            Varian Produk
           </TabsTrigger>
           <TabsTrigger value="feedback">
             <MessageSquare className="mr-2 h-4 w-4" />
-            Feedback & Iteration
+            Umpan Balik dan Iterasi 
           </TabsTrigger>
         </TabsList>
         <TabsContent value="packaging" className="mt-6">

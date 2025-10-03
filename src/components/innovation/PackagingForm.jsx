@@ -31,20 +31,20 @@ export function PackagingForm({ initialData }) {
         }
     }));
     toast({
-        title: 'Packaging Saved',
-        description: 'Your packaging details have been saved.',
+        title: 'Detail Packaging Disimpan',
+        description: 'Detail desain packaging Anda telah disimpan.',
     });
   }
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Packaging Improvement</CardTitle>
-        <CardDescription>Design packaging that is safe for logistics and appeals to customers.</CardDescription>
+        <CardTitle>Perkembangan Kemasan</CardTitle>
+        <CardDescription>Desain kemasan yang aman untuk logistik dan menarik minat pelanggan.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="packaging-notes">Packaging Design Notes</Label>
+          <Label htmlFor="packaging-notes">Catatan Desain Kemasan</Label>
           <Textarea
             id="packaging-notes"
             placeholder="e.g., impact-resistant, suitable for express delivery, vacuum sealed + bubble wrap for dry cakes"
@@ -55,11 +55,11 @@ export function PackagingForm({ initialData }) {
         </div>
         <div className="flex items-center space-x-2">
           <Switch id="adaptive-packaging" checked={isAdaptive} onCheckedChange={setIsAdaptive} />
-          <Label htmlFor="adaptive-packaging">Is this packaging adaptive for various product sizes?</Label>
+          <Label htmlFor="adaptive-packaging">Apakah desain packaging ini dapat disesuaikan dengan berbagai ukuran produk?</Label>
         </div>
         <div className="flex items-center space-x-2">
           <Checkbox id="long-distance-tested" checked={isTested} onCheckedChange={(checked) => setIsTested(checked === true)} />
-          <Label htmlFor="long-distance-tested">Has it been tested for long-distance shipping?</Label>
+          <Label htmlFor="long-distance-tested">Apakah desain packaging ini telah diuji untuk pengiriman jarak jauh?</Label>
         </div>
       </CardContent>
       <CardFooter className="flex justify-between items-center">
@@ -68,7 +68,7 @@ export function PackagingForm({ initialData }) {
             Logistics-Ready Packaging
           </Badge>
         )}
-        <Button onClick={handleSave} className="ml-auto">Save Packaging Details</Button>
+        <Button onClick={handleSave} className="ml-auto">Simpan Detail Packaging</Button>
       </CardFooter>
     </Card>
   );
