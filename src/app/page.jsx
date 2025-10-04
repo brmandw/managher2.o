@@ -54,35 +54,35 @@ function LandingPage() {
       title: "Pembuatan Proyek Bisnis",
       description:
         "Mulai dari nol, simpan & kelola ide bisnis dalam satu proyek terstruktur. Wujudkan ide menjadi rencana nyata.",
-      color: "from-purple-500 to-purple-600",
+      color: "bg-purple-500",
     },
     {
       icon: Target,
       title: "Analisis Target Segmen",
       description:
         "Identifikasi siapa pelanggan ideal berdasarkan deskripsi bisnis dengan bantuan AI yang cerdas.",
-      color: "from-indigo-500 to-purple-500",
+      color: "bg-indigo-500",
     },
     {
       icon: Sparkles,
       title: "Generator Proposisi Nilai Unik",
       description:
         "Bangun pesan nilai unik yang relevan dengan segmen target untuk menonjol di pasar.",
-      color: "from-purple-600 to-pink-500",
+      color: "bg-purple-600",
     },
     {
       icon: Lightbulb,
       title: "Lab Inovasi",
       description:
         "Eksplorasi peluang inovasi melalui iterasi produk, kemasan, dan umpan balik pengguna.",
-      color: "from-yellow-400 to-orange-400",
+      color: "bg-yellow-400",
     },
     {
       icon: TrendingUp,
       title: "Kesiapan Finansial & Investasi",
       description:
         "Proyeksi pendapatan & biaya bulanan, plus analisis kesiapan bisnis untuk menarik investor.",
-      color: "from-green-500 to-emerald-600",
+      color: "bg-green-500",
     },
   ];
 
@@ -113,7 +113,7 @@ function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FAF9FF] via-white to-[#F5F3FF] md:px-16">
       {/* Navigation */}
-      <nav className="z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 fixed pr-32">
+      <nav className="z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 fixed pr-32 py-4">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-10 h-10 bg-gradient-to-br from-[#493D9E] to-[#B2A5FF] rounded-xl flex items-center justify-center">
@@ -220,9 +220,9 @@ function LandingPage() {
           </div>
 
           <div className="relative">
-            <div className="relative z-10 bg-white rounded-3xl shadow-2xl p-8 transform hover:scale-105 transition-transform duration-500">
+            <div className="relative z-10 bg-white rounded-3xl shadow-2xl p-5 transform hover:scale-105 transition-transform duration-500">
               <img
-                src="/Screenshot 2025-10-01 231645.png"
+                src="/dashboard.png"
                 alt="ManagHer Dashboard Preview"
                 className="w-full rounded-xl"
               />
@@ -308,15 +308,14 @@ function LandingPage() {
           <div className="inline-flex items-center space-x-2 bg-[#DAD2FF] px-4 py-2 rounded-full mb-6">
             <Sparkles className="w-4 h-4 text-[#493D9E]" />
             <span className="text-sm font-medium text-[#493D9E]">
-              5 Tools Powerful untuk Bisnismu
+              5 Tools Powerful untuk Bisnis-mu
             </span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Bangun Bisnismu Selangkah Demi Selangkah
+            Bangun Bisnis-mu Selangkah Demi Selangkah
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Setiap fitur dirancang khusus untuk membantumu berkembang — tanpa
-            ribet, tanpa bingung.
+            Setiap fitur dirancang khusus untuk membantu-mu berkembang.
           </p>
         </div>
 
@@ -330,7 +329,7 @@ function LandingPage() {
               }}
             >
               <div
-                className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                className={`w-16 h-16 rounded-2xl ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
               >
                 <feature.icon className="w-8 h-8 text-white" />
               </div>
@@ -344,13 +343,13 @@ function LandingPage() {
           ))}
 
           {/* CTA Card */}
-          <div className="bg-gradient-to-br from-[#FFF2AF] to-[#FFE880] rounded-2xl p-8 flex flex-col justify-center items-center text-center space-y-4">
+          <div className="bg-[#FFF2AF] rounded-2xl p-8 flex flex-col justify-center items-center text-center space-y-4">
             <Sparkles className="w-12 h-12 text-[#493D9E]" />
             <h3 className="text-2xl font-bold text-[#493D9E]">
               Dan Masih Banyak Lagi!
             </h3>
             <p className="text-gray-800">
-              Temukan semua fitur yang dirancang khusus untukmu
+              Temukan semua fitur yang dirancang khusus untuk-mu
             </p>
             <button className="bg-[#493D9E] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#3d3182] transition-all duration-300 hover:scale-105">
               Jelajahi Semua Fitur
@@ -391,7 +390,7 @@ function LandingPage() {
             </div>
             <div className="p-6">
               <img
-                src="/Screenshot 2025-10-01 231645.png"
+                src="/profile.png"
                 alt="ManagHer Interface"
                 className="w-full rounded-xl shadow-lg"
               />
@@ -504,12 +503,9 @@ function LandingPage() {
       {/* Footer */}
       <footer className="relative z-10 text-black py-12">
         <div className="max-w-7xl mx-auto px-6">
-
-
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
             <p>
-              &copy; 2025 ManagHer. Semua hak dilindungi. Dibuat dengan ❤️ untuk
-              solopreneur perempuan.
+              &copy; 2025 ManagHer. Semua hak dilindungi. 
             </p>
           </div>
         </div>
