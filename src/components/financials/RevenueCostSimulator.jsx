@@ -109,16 +109,16 @@ export function RevenueCostSimulator({ initialData }) {
                     </CardHeader>
                     <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                         <div className="p-4 bg-muted rounded-lg">
-                            <p className="text-sm text-muted-foreground">Pendapatan Proyeksi</p>
-                            <p className="text-2xl font-bold">Rp {projection.revenue.toLocaleString('id-ID')}</p>
+                            <p className="text-sm text-slate-700">Pendapatan Proyeksi</p>
+                            <p className="text-xl font-bold">Rp {projection.revenue.toLocaleString('id-ID')}</p>
                         </div>
                         <div className="p-4 bg-muted rounded-lg">
-                            <p className="text-sm text-muted-foreground">Margin Keuntungan</p>
-                            <p className="text-2xl font-bold">{projection.margin.toFixed(1)}%</p>
+                            <p className="text-sm text-slate-700">Margin Keuntungan</p>
+                            <p className="text-xl font-bold">{projection.margin.toFixed(1)}%</p>
                         </div>
                         <div className="p-4 bg-muted rounded-lg">
-                            <p className="text-sm text-muted-foreground">Titik Impas</p>
-                            <p className="text-2xl font-bold">{projection.breakEvenPoint} unit</p>
+                            <p className="text-sm text-slate-700">Titik Impas</p>
+                            <p className="text-xl font-bold">{projection.breakEvenPoint} unit</p>
                         </div>
                     </CardContent>
                  </Card>

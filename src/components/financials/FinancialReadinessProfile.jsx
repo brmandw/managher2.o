@@ -90,7 +90,7 @@ export function FinancialReadinessProfile({ projectData }) {
     return (
         <Card className="sticky top-24">
             <CardHeader>
-                <CardTitle>Profil Kesiapan Finansial</CardTitle>
+                <CardTitle>Profil Kesiapan Bisnis</CardTitle>
                 <CardDescription>Skor berbasis AI berdasarkan data proyek-mu.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
