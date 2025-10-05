@@ -47,7 +47,7 @@ export default function InnovationPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Inovasi Berkelanjutan</h2>
+        <h2 className="text-2xl font-bold tracking-tight">Innovation Lab</h2>
         <p className="text-muted-foreground">
           Perbarui produk dan paket berdasarkan umpan balik pasar.
         </p>

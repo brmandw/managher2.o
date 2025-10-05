@@ -308,14 +308,14 @@ function LandingPage() {
           <div className="inline-flex items-center space-x-2 bg-[#DAD2FF] px-4 py-2 rounded-full mb-6">
             <Sparkles className="w-4 h-4 text-[#493D9E]" />
             <span className="text-sm font-medium text-[#493D9E]">
-              5 Tools Powerful untuk Bisnis-mu
+              5 Tools Powerful untuk Bisnismu
             </span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Bangun Bisnis-mu Selangkah Demi Selangkah
+            Bangun Bisnismu Selangkah Demi Selangkah
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Setiap fitur dirancang khusus untuk membantu-mu berkembang.
+            Setiap fitur dirancang khusus untuk membantumu berkembang.
           </p>
         </div>
 
@@ -349,7 +349,7 @@ function LandingPage() {
               Dan Masih Banyak Lagi!
             </h3>
             <p className="text-gray-800">
-              Temukan semua fitur yang dirancang khusus untuk-mu
+              Temukan semua fitur yang dirancang khusus untukmu
             </p>
             <button className="bg-[#493D9E] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#3d3182] transition-all duration-300 hover:scale-105">
               Jelajahi Semua Fitur

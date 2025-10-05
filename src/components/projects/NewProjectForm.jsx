@@ -10,7 +10,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useEffect } from 'react';
 
 const steps = [
-    { id: 1, field: 'businessName', label: "Pertama, apa nama bisnis-mu?", placeholder: "contoh: Artisan Bakes" },
+    { id: 1, field: 'businessName', label: "Pertama, apa nama bisnismu?", placeholder: "contoh: Artisan Bakes" },
     { id: 2, field: 'businessType', label: "Bagus! Jenis bisnis apa?", type: 'select', options: ['F&B', 'Fashion', 'Services', 'Tech', 'Other'] },
     { id: 3, field: 'productsSold', label: "Produk atau layanan apa yang kamu jual?", placeholder: "contoh: 'Roti sourdough artisan dan kue kustom'", type: 'textarea' },
     { id: 4, field: 'description', label: "Terakhir, berikan deskripsi singkat yang menarik. (Opsional)", placeholder: "contoh: 'Roti sourdough terbaik di kota, dibuat dengan penuh cinta.'", type: 'textarea' },
@@ -18,9 +18,9 @@ const steps = [
 
 const getStepLabel = (step) => {
     switch (step) {
-        case 1: return "Pertama, apa nama bisnis-mu?";
+        case 1: return "Pertama, apa nama bisnismu?";
         case 2: return "Bagus! Jenis bisnis apa?";
-        case 3: return "Dan produk atau layanan apa yang-mu jual?";
+        case 3: return "Dan produk atau layanan apa yang kamu jual?";
         case 4: return "Terakhir, berikan deskripsi singkat yang menarik (Opsional).";
         default: return "";
     }
@@ -37,7 +37,7 @@ const StepInput = ({ step, formData, handleInputChange, handleSelectChange }) =>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="F&B">F&amp;B (Makanan &amp; Minuman)</SelectItem>
-                  <SelectItem value="Fashion">Fashion</SelectItem>
+                  <SelectItem value="Fashion">Pakaian</SelectItem>
                   <SelectItem value="Services">Jasa</SelectItem>
                   <SelectItem value="Tech">Teknologi</SelectItem>
                   <SelectItem value="Other">Lainnya</SelectItem>

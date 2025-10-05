@@ -95,7 +95,7 @@ const { business = {}, marketability = {}, innovation = {}, financials = {} } = 
         <div className="pb-3">
           <h2 className="text-2xl font-bold tracking-tight">Project Overview</h2>
           <p className="text-lg text-muted-foreground">
-            Ringkasan proyek bisnis-mu
+            Ringkasan proyek bisnismu
           </p>
         </div>
       </div>
@@ -179,7 +179,7 @@ const { business = {}, marketability = {}, innovation = {}, financials = {} } = 
       {/* Progress Section */}
       <div className="space-y-6">
         <div className="flex items-center gap-3 mt-8">
-          <h3 className="text-2xl font-bold">Progress-mu</h3>
+          <h3 className="text-2xl font-bold">Progressmu</h3>
           <div className="flex-1 h-0.5 bg-gradient-to-r from-primary/30 to-transparent"></div>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -266,7 +266,7 @@ const { business = {}, marketability = {}, innovation = {}, financials = {} } = 
               </div>
 
               <p className="text-sm text-muted-foreground text-center pt-2">
-                Jadikan bisnis-mu next level
+                Jadikan bisnismu next level
               </p>
             </CardContent>
           </Card>

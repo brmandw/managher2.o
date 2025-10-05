@@ -136,7 +136,7 @@ export function MarketabilityWizard({ projectData }) {
 
     toast({
       title: 'Stratégi Pasar Disimpan!',
-      description: 'Strategi pasar-mu telah disimpan dengan sukses.',
+      description: 'Strategi pasarmu telah disimpan dengan sukses.',
       className: 'bg-primary text-primary-foreground',
     });
     // router.push(`/projects/${projectData.id}/innovation`);
@@ -153,7 +153,7 @@ export function MarketabilityWizard({ projectData }) {
           <Card>
             <CardHeader>
               <CardTitle>Step 1: Segmentasi Pasar</CardTitle>
-              <CardDescription>Identifikasi segmentasi pasar potensial untuk bisnis-mu.</CardDescription>
+              <CardDescription>Identifikasi segmentasi pasar potensial untuk bisnismu.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -204,7 +204,7 @@ export function MarketabilityWizard({ projectData }) {
           <Card>
             <CardHeader>
               <CardTitle>Step 3: Rekomendasi Niche dan Posisi Pasar</CardTitle>
-              <CardDescription>Definisikan niche unikmu dan bagaimana kamu ingin dikenali oleh pasar targetmu.</CardDescription>
+              <CardDescription>Definisikan niche unik bisnismu dan bagaimana kamu ingin dikenali oleh pasar targetmu.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
@@ -238,7 +238,7 @@ export function MarketabilityWizard({ projectData }) {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2"><PartyPopper className="text-accent" /> Strategi Marketabilitymu Siap!</CardTitle>
-                <CardDescription>Berikut adalah strategi marketability yang dihasilkan oleh AI. Kamu bisa mengeditnya untuk lebih sesuai dengan visimu.</CardDescription>
+                <CardDescription>Berikut adalah strategi marketability yang dihasilkan oleh AI. Kamu bisa mengeditnya untuk lebih sesuai dengan visi bisnismu.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
@@ -270,10 +270,10 @@ export function MarketabilityWizard({ projectData }) {
                 <div>
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
                     <span className="flex items-center justify-center w-6 h-6 rounded-full bg-accent text-accent-foreground text-sm">1</span>
-                    Validasi posisi pasar-mu
+                    Validasi posisi pasarmu
                   </h4>
                   <p className="text-sm text-muted-foreground ml-8">
-                    Uji pernyataan posisi pasar-mu kepada segmen target melalui survei atau diskusi kelompok untuk memastikan pesanmu benar-benar tersampaikan.
+                    Uji pernyataan posisi pasarmu kepada segmen target melalui survei atau diskusi kelompok untuk memastikan pesanmu benar-benar tersampaikan.
                   </p>
                 </div>
 
@@ -303,7 +303,7 @@ export function MarketabilityWizard({ projectData }) {
                     Bangun Konsistensi Brand
                   </h4>
                   <p className="text-sm text-muted-foreground ml-8">
-                    Buat panduan brand yang mencerminkan posisi pasar-mu untuk menjaga konsistensi di semua titik interaksi.
+                    Buat panduan brand yang mencerminkan posisi pasarmu untuk menjaga konsistensi di semua titik interaksi.
                   </p>
                 </div>
 
